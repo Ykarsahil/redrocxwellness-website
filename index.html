@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>RedRocX Fitness Club | Best Gym in Pen, Maharashtra</title>
+  <meta name="description" content="RedRocX Fitness Club — Premium gym and wellness center in Pen, Maharashtra. Mind, Nutrition, and Fitness programs."/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #ffffff 0%, #fff5f5 50%, #ffe8e8 100%);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 70px;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(204,0,0,0.1) 0%, transparent 65%);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -50px; left: -50px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(204,0,0,0.06) 0%, transparent 65%);
+      border-radius: 50%;
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-eyebrow {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--red);
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 1rem;
+    }
+    .hero-eyebrow::before { content: ''; width: 30px; height: 2px; background: var(--red); }
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.5rem, 8vw, 6.5rem);
+      letter-spacing: 0.04em;
+      color: var(--text-dark);
+      line-height: 0.95;
+      margin-bottom: 1.5rem;
+    }
+    .hero-title .line-red { color: var(--red); display: block; }
+    .hero-title .line-thin {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1rem, 2vw, 1.4rem);
+      font-weight: 300;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .hero-desc {
+      font-size: 0.92rem;
+      color: var(--text-light);
+      line-height: 1.9;
+      max-width: 480px;
+      margin-bottom: 2.2rem;
+    }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero-badges {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .hero-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      color: var(--text-mid);
+      font-weight: 600;
+    }
+    .hero-badge-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--red-muted);
+      border: 1px solid rgba(204,0,0,0.2);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+
+    /* Hero visual side */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-img-wrap {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 70px rgba(204,0,0,0.2), 0 8px 30px rgba(0,0,0,0.1);
+    }
+    .hero-img-wrap img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      display: block;
+      border-radius: 24px;
+    }
+    .hero-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(204,0,0,0.3) 0%, transparent 50%);
+      border-radius: 24px;
+    }
+    .hero-img-badge {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      background: white;
+      border-radius: 12px;
+      padding: 0.8rem 1.2rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+    .hero-img-badge-icon { font-size: 1.5rem; }
+    .hero-img-badge-text { font-size: 0.7rem; font-weight: 700; color: var(--text-dark); }
+    .hero-img-badge-sub { font-size: 0.62rem; color: var(--text-light); }
+    .hero-frame-deco {
+      position: absolute;
+      top: -16px;
+      right: -16px;
+      width: 80%;
+      height: 80%;
+      border: 2px solid var(--red);
+      border-radius: 24px;
+      z-index: -1;
+    }
+
+    /* ── INTRO STRIP ── */
+    .intro-strip {
+      background: var(--red);
+      padding: 1.2rem 0;
+      overflow: hidden;
+    }
+    .ticker-wrap { display: flex; gap: 3rem; white-space: nowrap; animation: ticker 20s linear infinite; }
+    .ticker-item {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      flex-shrink: 0;
+    }
+    .ticker-dot { width: 5px; height: 5px; background: rgba(255,255,255,0.5); border-radius: 50%; }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── STATS ── */
+    .stats-section { padding: 60px 0; background: var(--off-white); }
+
+    /* ── SERVICES PREVIEW ── */
+    .services-preview { padding: 100px 0; background: var(--white); }
+    .service-card {
+      background: var(--white);
+      border: 1px solid var(--mid-grey);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--red);
+      transform: scaleX(0);
+      transition: transform 0.35s ease;
+      transform-origin: left;
+    }
+    .service-card:hover { box-shadow: var(--shadow-red); transform: translateY(-6px); border-color: rgba(204,0,0,0.25); }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--red-muted);
+      border: 1px solid rgba(204,0,0,0.2);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      transition: var(--transition);
+    }
+    .service-card:hover .service-icon { background: var(--red); }
+    .service-num {
+      position: absolute;
+      top: 1.5rem; right: 2rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4rem;
+      color: rgba(204,0,0,0.06);
+      line-height: 1;
+    }
+    .service-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      color: var(--text-dark);
+      margin-bottom: 0.8rem;
+    }
+    .service-desc { font-size: 0.85rem; color: var(--text-light); line-height: 1.8; flex: 1; }
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 1.2rem 0;
+    }
+    .service-tag {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--red);
+      background: var(--red-muted);
+      padding: 0.25rem 0.6rem;
+      border-radius: 50px;
+      border: 1px solid rgba(204,0,0,0.15);
+    }
+    .service-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--red);
+      text-decoration: none;
+      margin-top: auto;
+      transition: gap 0.2s ease;
+    }
+    .service-link:hover { gap: 0.8rem; }
+
+    /* ── ABOUT PREVIEW ── */
+    .about-preview { padding: 100px 0; background: var(--off-white); }
+    .about-preview-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .about-img-stack { position: relative; }
+    .about-img-main {
+      width: 100%;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-med);
+      display: block;
+    }
+    .about-img-accent {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      width: 55%;
+      border: 4px solid white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-med);
+    }
+    .about-frame {
+      position: absolute;
+      top: -12px; left: -12px;
+      right: 12px; bottom: 12px;
+      border: 2px solid var(--red);
+      border-radius: var(--radius-lg);
+      z-index: -1;
+    }
+    .feature-list { list-style: none; margin: 1.5rem 0; display: flex; flex-direction: column; gap: 0.8rem; }
+    .feature-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.85rem;
+      color: var(--text-mid);
+    }
+    .feature-list li::before {
+      content: '✓';
+      width: 22px; height: 22px;
+      background: var(--red);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials { padding: 100px 0; background: var(--white); }
+    .testimonial-card {
+      background: var(--white);
+      border: 1px solid var(--mid-grey);
+      border-radius: var(--radius-lg);
+      padding: 2rem 2rem 1.8rem;
+      transition: var(--transition);
+      height: 100%;
+      position: relative;
+    }
+    .testimonial-card:hover { box-shadow: var(--shadow-red); border-color: rgba(204,0,0,0.2); }
+    .quote-mark {
+      font-family: Georgia, serif;
+      font-size: 4rem;
+      color: var(--red);
+      line-height: 0.8;
+      margin-bottom: 0.5rem;
+      opacity: 0.5;
+    }
+    .testimonial-text { font-size: 0.85rem; color: var(--text-mid); line-height: 1.9; font-style: italic; margin-bottom: 1.5rem; }
+    .testimonial-author { display: flex; align-items: center; gap: 0.8rem; }
+    .author-avatar {
+      width: 42px; height: 42px;
+      background: var(--red);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+    .author-name { font-weight: 700; font-size: 0.82rem; color: var(--text-dark); }
+    .author-meta { font-size: 0.7rem; color: var(--text-light); }
+    .stars { color: #f5a623; font-size: 0.8rem; margin-bottom: 0.3rem; }
+
+    /* ── MEMBERSHIP ── */
+    .membership { padding: 100px 0; background: var(--off-white); }
+    .plan-card {
+      background: var(--white);
+      border: 1px solid var(--mid-grey);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      text-align: center;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .plan-card.featured {
+      border-color: var(--red);
+      box-shadow: var(--shadow-red);
+    }
+    .plan-card.featured::before {
+      content: 'MOST POPULAR';
+      position: absolute;
+      top: 1rem; right: -2rem;
+      background: var(--red);
+      color: white;
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      padding: 0.3rem 2.5rem;
+      transform: rotate(45deg);
+    }
+    .plan-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-red); }
+    .plan-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      color: var(--text-dark);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+    .plan-price {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.5rem;
+      color: var(--red);
+      line-height: 1;
+      margin: 1rem 0;
+    }
+    .plan-price sup { font-size: 1.5rem; vertical-align: top; margin-top: 0.8rem; }
+    .plan-price span { font-size: 1rem; color: var(--text-light); font-family: 'Montserrat', sans-serif; }
+    .plan-divider { width: 40px; height: 2px; background: var(--red); margin: 1rem auto; border-radius: 2px; }
+    .plan-features { list-style: none; text-align: left; margin: 1.5rem 0; display: flex; flex-direction: column; gap: 0.6rem; }
+    .plan-features li { font-size: 0.8rem; color: var(--text-mid); display: flex; align-items: center; gap: 0.5rem; }
+    .plan-features li::before { content: '✓'; color: var(--red); font-weight: 700; }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      background: var(--red);
+      padding: 80px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-banner::before {
+      content: 'REDROCKX';
+      position: absolute;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 16vw;
+      color: rgba(255,255,255,0.05);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+      letter-spacing: 0.1em;
+      pointer-events: none;
+    }
+    .cta-banner h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      color: white;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.8rem;
+    }
+    .cta-banner p { font-size: 0.9rem; color: rgba(255,255,255,0.8); margin-bottom: 2rem; }
+    .btn-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 2.2rem;
+      background: white;
+      color: var(--red);
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: var(--transition);
+    }
+    .btn-white:hover { background: var(--text-dark); color: white; transform: translateY(-2px); }
+    .btn-outline-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 2rem;
+      background: transparent;
+      color: white;
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 2px solid rgba(255,255,255,0.6);
+      border-radius: 10px;
+      transition: var(--transition);
+    }
+    .btn-outline-white:hover { background: white; color: var(--red); border-color: white; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 992px) {
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero-eyebrow { justify-content: center; }
+      .hero-cta { justify-content: center; }
+      .hero-badges { justify-content: center; }
+      .hero-visual { display: none; }
+      .about-preview-inner { grid-template-columns: 1fr; }
+      .about-img-stack { margin-bottom: 3rem; }
+    }
+    @media (max-width: 576px) {
+      .hero { min-height: auto; padding: 110px 0 70px; }
+    }
+  </style>
+</head>
+<body>
+<script src="js/layout.js"></script>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="container-rrx">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-eyebrow">Est. 2018 · Pen, Maharashtra</div>
+        <h1 class="hero-title">
+          <span class="line-thin">Welcome to</span>
+          RedRoc<span class="line-red">X</span>
+          Fitness Club
+        </h1>
+        <p class="hero-desc">A premium fitness experience built for those who strive to become better every day. Train your mind, fuel your body, transform your life.</p>
+        <div class="hero-cta">
+          <a href="pages/contact.html" class="btn-rrx">Join Now →</a>
+          <a href="pages/about.html" class="btn-rrx-outline">Learn More</a>
+        </div>
+        <div class="hero-badges">
+          <div class="hero-badge"><div class="hero-badge-icon">🧘</div>Mind</div>
+          <div class="hero-badge"><div class="hero-badge-icon">🥗</div>Nutrition</div>
+          <div class="hero-badge"><div class="hero-badge-icon">💪</div>Fitness</div>
+          <div class="hero-badge"><div class="hero-badge-icon">🏆</div>Premium</div>
+        </div>
+      </div>
+      <div class="hero-visual reveal-r">
+        <div class="hero-img-wrap">
+          <img src="https://lh3.googleusercontent.com/p/AF1QipOiKmFNE7IINtTepSTHm0TeGNRIathOsHSOq-6G=s1360-w1360-h1020-rw" alt="RedRocX Training Floor"/>
+          <div class="hero-img-overlay"></div>
+          <div class="hero-img-badge">
+            <div class="hero-img-badge-icon">⭐</div>
+            <div>
+              <div class="hero-img-badge-text">4.9 Rating</div>
+              <div class="hero-img-badge-sub">Google Reviews</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-frame-deco"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TICKER ── -->
+<div class="intro-strip">
+  <div class="ticker-wrap">
+    <div class="ticker-item">Mind<div class="ticker-dot"></div></div>
+    <div class="ticker-item">Body<div class="ticker-dot"></div></div>
+    <div class="ticker-item">Nutrition<div class="ticker-dot"></div></div>
+    <div class="ticker-item">Strength Training<div class="ticker-dot"></div></div>
+    <div class="ticker-item">Personal Training<div class="ticker-dot"></div></div>
+    <div class="ticker-item">Cardio<div class="ticker-dot"></div></div>
+    <div class="ticker-item">Meditation<div class="ticker-dot"></div></div>
+    <div class="ticker-item">Wellness<div class="ticker-dot"></div></div>
+    <div class="ticker-item">Mind<div class="ticker-dot"></div></div>
+    <div class="ticker-item">Body<div class="ticker-dot"></div></div>
+    <div class="ticker-item">Nutrition<div class="ticker-dot"></div></div>
+    <div class="ticker-item">Strength Training<div class="ticker-dot"></div></div>
+    <div class="ticker-item">Personal Training<div class="ticker-dot"></div></div>
+    <div class="ticker-item">Cardio<div class="ticker-dot"></div></div>
+    <div class="ticker-item">Meditation<div class="ticker-dot"></div></div>
+    <div class="ticker-item">Wellness<div class="ticker-dot"></div></div>
+  </div>
+</div>
+
+<!-- ── STATS ── -->
+<section class="stats-section">
+  <div class="container-rrx">
+    <div class="stats-bar reveal">
+      <div class="stat-item">
+        <div class="stat-number"><span data-count="500" data-suffix="+">500+</span></div>
+        <div class="stat-label">Active Members</div>
+      </div>
+      <div class="stats-bar-divider"></div>
+      <div class="stat-item">
+        <div class="stat-number"><span data-count="7" data-suffix="+">7+</span></div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stats-bar-divider"></div>
+      <div class="stat-item">
+        <div class="stat-number"><span data-count="10" data-suffix="+">10+</span></div>
+        <div class="stat-label">Expert Trainers</div>
+      </div>
+      <div class="stats-bar-divider"></div>
+      <div class="stat-item">
+        <div class="stat-number"><span data-count="3">3</span></div>
+        <div class="stat-label">Wellness Programs</div>
+      </div>
+      <div class="stats-bar-divider"></div>
+      <div class="stat-item">
+        <div class="stat-number"><span data-count="4.9">4.9</span>⭐</div>
+        <div class="stat-label">Google Rating</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES PREVIEW ── -->
+<section class="services-preview">
+  <div class="container-rrx">
+    <div class="reveal" style="margin-bottom:3.5rem;">
+      <div class="section-label">What We Offer</div>
+      <h2 class="section-title">Three Pillars of <span>Wellness</span></h2>
+      <p class="section-sub">At RedRocX, we believe true transformation happens when Mind, Nutrition, and Fitness work together in harmony.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.8rem;">
+
+      <div class="service-card reveal d1">
+        <div class="service-num">01</div>
+        <div class="service-icon">🧘‍♀️</div>
+        <div class="service-title">Mind</div>
+        <p class="service-desc">Achieve mental clarity, manage stress, and build inner resilience through guided meditation and mindfulness practices.</p>
+        <div class="service-tags">
+          <span class="service-tag">Meditation</span>
+          <span class="service-tag">Stress Relief</span>
+          <span class="service-tag">Mindfulness</span>
+        </div>
+        <a href="pages/mind.html" class="service-link">Explore Mind →</a>
+      </div>
+
+      <div class="service-card reveal d2">
+        <div class="service-num">02</div>
+        <div class="service-icon">🥗</div>
+        <div class="service-title">Nutrition</div>
+        <p class="service-desc">Personalized diet plans for weight management, hormonal balance, and disease management crafted by certified nutritionists.</p>
+        <div class="service-tags">
+          <span class="service-tag">Diet Plans</span>
+          <span class="service-tag">Weight Loss</span>
+          <span class="service-tag">Coaching</span>
+        </div>
+        <a href="pages/nutrition.html" class="service-link">Explore Nutrition →</a>
+      </div>
+
+      <div class="service-card reveal d3">
+        <div class="service-num">03</div>
+        <div class="service-icon">💪</div>
+        <div class="service-title">Fitness</div>
+        <p class="service-desc">From strength training to high-intensity cardio, our expert trainers craft programs that push your limits safely.</p>
+        <div class="service-tags">
+          <span class="service-tag">Strength</span>
+          <span class="service-tag">Cardio</span>
+          <span class="service-tag">HIIT</span>
+        </div>
+        <a href="pages/fitness.html" class="service-link">Explore Fitness →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT PREVIEW ── -->
+<section class="about-preview">
+  <div class="container-rrx">
+    <div class="about-preview-inner">
+      <div class="about-img-stack reveal-l">
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwer_g0iCIjaV9Lh46mJs88pBQpZRcDJlG-BMshbhfj4CIyOqMZsjMRtaNeu_kktauqpsnyKEDHkYSJOxG_hneN1T0fYTBgp_PEnkgqtsdDiw4duN6B5o2hC9LGnymjiFROhgbao4=s1360-w1360-h1020-rw" alt="RedRocX Gym" class="about-img-main"/>
+        <div class="about-frame"></div>
+      </div>
+
+      <div class="reveal-r">
+        <div class="section-label">Our Story</div>
+        <h2 class="section-title">About <span>RedRocX</span></h2>
+        <div class="red-divider"></div>
+        <p style="font-size:0.9rem;color:var(--text-mid);line-height:1.9;margin-bottom:1rem;">
+          REDROC X Wellness is more than a gym — it's a performance-driven fitness space built for those who strive to become better every day.
+        </p>
+        <p style="font-size:0.9rem;color:var(--text-mid);line-height:1.9;margin-bottom:1.5rem;">
+          Founded by <strong>Tarannum Kazmi</strong>, REDROC X was created to bring a premium fitness experience to Pen. We go beyond workouts, supporting individuals through personalized training and corporate wellness programs.
+        </p>
+        <ul class="feature-list">
+          <li>Safe, comfortable, and empowering environment for women</li>
+          <li>Expert certified trainers for all fitness levels</li>
+          <li>Personalized programs for lasting transformation</li>
+          <li>Holistic approach: Mind, Body & Nutrition</li>
+        </ul>
+        <a href="pages/about.html" class="btn-rrx" style="margin-top:1rem;">Meet Our Team →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ── -->
+<section class="testimonials">
+  <div class="container-rrx">
+    <div class="reveal" style="text-align:center;margin-bottom:3.5rem;">
+      <div class="section-label" style="justify-content:center;">What Members Say</div>
+      <h2 class="section-title">Real Results. <span>Real People.</span></h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.8rem;">
+
+      <div class="testimonial-card reveal d1">
+        <div class="quote-mark">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">RedRocX completely transformed my fitness journey. The trainers are incredibly professional and the nutrition guidance helped me lose 12 kg in 3 months!</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">PR</div>
+          <div>
+            <div class="author-name">Priya Rane</div>
+            <div class="author-meta">Member since 2022</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal d2">
+        <div class="quote-mark">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Best gym in Pen! The environment is clean, motivating, and the staff truly cares about your progress. The PCOD management program changed my life.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">SK</div>
+          <div>
+            <div class="author-name">Sneha Kulkarni</div>
+            <div class="author-meta">Member since 2021</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal d3">
+        <div class="quote-mark">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">The meditation and mindfulness sessions have improved not just my fitness but my overall mental wellbeing. RedRocX is truly a wellness center!</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">AM</div>
+          <div>
+            <div class="author-name">Arjun Mahajan</div>
+            <div class="author-meta">Member since 2023</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── MEMBERSHIP ── -->
+<section class="membership">
+  <div class="container-rrx">
+    <div class="reveal" style="text-align:center;margin-bottom:3.5rem;">
+      <div class="section-label" style="justify-content:center;">Membership Plans</div>
+      <h2 class="section-title">Choose Your <span>Plan</span></h2>
+      <p class="section-sub" style="margin:0 auto;">Flexible membership options designed to fit every goal and budget.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.8rem;max-width:900px;margin:0 auto;">
+
+      <div class="plan-card reveal d1">
+        <div class="plan-name">Starter</div>
+        <div class="red-badge" style="margin-bottom:0.5rem;">Monthly</div>
+        <div class="plan-price"><sup>₹</sup>999<span>/mo</span></div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>Gym Access (6AM–10PM)</li>
+          <li>Cardio Zone</li>
+          <li>Locker Room</li>
+          <li>2 Group Classes/mo</li>
+        </ul>
+        <a href="pages/contact.html" class="btn-rrx-outline" style="width:100%;justify-content:center;">Get Started</a>
+      </div>
+
+      <div class="plan-card featured reveal d2">
+        <div class="plan-name">Pro</div>
+        <div class="red-badge" style="margin-bottom:0.5rem;">3 Months</div>
+        <div class="plan-price"><sup>₹</sup>2499<span>/mo</span></div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>Everything in Starter</li>
+          <li>Unlimited Group Classes</li>
+          <li>Nutrition Consultation</li>
+          <li>Personal Trainer (2×/week)</li>
+          <li>Body Assessment</li>
+        </ul>
+        <a href="pages/contact.html" class="btn-rrx" style="width:100%;justify-content:center;">Get Started</a>
+      </div>
+
+      <div class="plan-card reveal d3">
+        <div class="plan-name">Elite</div>
+        <div class="red-badge" style="margin-bottom:0.5rem;">Annual</div>
+        <div class="plan-price"><sup>₹</sup>3999<span>/mo</span></div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>Everything in Pro</li>
+          <li>Unlimited PT Sessions</li>
+          <li>Mind & Wellness Program</li>
+          <li>Diet Plan + Follow-up</li>
+          <li>Corporate Wellness</li>
+        </ul>
+        <a href="pages/contact.html" class="btn-rrx-outline" style="width:100%;justify-content:center;">Get Started</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA BANNER ── -->
+<section class="cta-banner">
+  <div class="container-rrx" style="position:relative;z-index:1;">
+    <div class="reveal">
+      <h2>Ready to Start Your Transformation?</h2>
+      <p>Join hundreds of members who have already changed their lives at RedRocX Fitness Club.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="pages/contact.html" class="btn-white">Join Today →</a>
+        <a href="tel:+919137601243" class="btn-outline-white">📞 Call Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── GALLERY STRIP ── -->
+<section style="padding:70px 0;background:var(--off-white);">
+  <div class="container-rrx">
+    <div class="reveal" style="text-align:center;margin-bottom:2.5rem;">
+      <div class="section-label" style="justify-content:center;">Our Space</div>
+      <h2 class="section-title">Inside <span>RedRocX</span></h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;">
+      <div class="reveal d1" style="border-radius:14px;overflow:hidden;height:220px;">
+        <img src="https://lh3.googleusercontent.com/p/AF1QipOiKmFNE7IINtTepSTHm0TeGNRIathOsHSOq-6G=s1360-w1360-h1020-rw" alt="Training Floor" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease;display:block;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
+      </div>
+      <div class="reveal d2" style="border-radius:14px;overflow:hidden;height:220px;">
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwer_g0iCIjaV9Lh46mJs88pBQpZRcDJlG-BMshbhfj4CIyOqMZsjMRtaNeu_kktauqpsnyKEDHkYSJOxG_hneN1T0fYTBgp_PEnkgqtsdDiw4duN6B5o2hC9LGnymjiFROhgbao4=s1360-w1360-h1020-rw" alt="Equipment Zone" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease;display:block;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
+      </div>
+      <div class="reveal d3" style="border-radius:14px;overflow:hidden;height:220px;">
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAweq7YPXoyV9as2Dzw5kecgeqOAOjahY6_CtoNFjmbq4QbjJiOPlG4Lkfd9aq5wW0oIMsp6IxjPTdSNdvaAxoAJ-KE-F5vlomET0txBxY64mx1PA0C_tpQP_DFI8j9iugQm0n3lU4IA=s1360-w1360-h1020-rw" alt="Workout Area" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease;display:block;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
+      </div>
+      <div class="reveal d4" style="border-radius:14px;overflow:hidden;height:220px;">
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAweojnlOqautpNS3_9XcXFJs_lNBCdWx4Ct6wmEPxrSYcGgZkV7gjwMCr8OlyQqdU5ABPS9gbWf7kuMd-n4HzccYNQ6wKEtAEEKbCWO6rPRf9MZUg2EN29uZstzaJrQ7wVYM39rTm=s1360-w1360-h1020-rw" alt="Premium Facilities" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease;display:block;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="js/main.js"></script>
+
+<style>
+@media(max-width:992px){
+  [style*="grid-template-columns:repeat(3,1fr)"]{grid-template-columns:1fr!important;}
+  [style*="grid-template-columns:repeat(4,1fr)"]{grid-template-columns:1fr 1fr!important;}
+  .about-preview-inner{grid-template-columns:1fr!important;}
+}
+@media(max-width:576px){
+  [style*="grid-template-columns:repeat(3,1fr)"]{grid-template-columns:1fr!important;}
+  [style*="grid-template-columns:repeat(4,1fr)"]{grid-template-columns:1fr!important;}
+}
+</style>
+</body>
+</html>

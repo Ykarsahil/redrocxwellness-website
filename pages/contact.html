@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Contact Us | RedRocX Fitness Club</title>
+  <meta name="description" content="Get in touch with RedRocX Fitness Club in Pen, Maharashtra. Contact form, Google Maps, phone, and social media."/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <style>
+    /* ── CONTACT LAYOUT ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    /* ── INFO CARDS ── */
+    .info-card {
+      background: var(--white);
+      border: 1px solid var(--mid-grey);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.8rem;
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-start;
+      transition: var(--transition);
+      margin-bottom: 1rem;
+    }
+    .info-card:hover { box-shadow: var(--shadow-soft); border-color: rgba(204,0,0,0.25); }
+    .info-card-icon {
+      width: 46px; height: 46px;
+      background: var(--red);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    .info-card-label {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 0.3rem;
+    }
+    .info-card-value {
+      font-size: 0.88rem;
+      color: var(--text-dark);
+      font-weight: 600;
+      line-height: 1.5;
+    }
+    .info-card-sub {
+      font-size: 0.75rem;
+      color: var(--text-light);
+      margin-top: 0.2rem;
+      line-height: 1.5;
+    }
+    .info-card-link {
+      color: var(--text-dark);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .info-card-link:hover { color: var(--red); }
+
+    /* ── HOURS TABLE ── */
+    .hours-table { width: 100%; border-collapse: collapse; }
+    .hours-table tr { border-bottom: 1px solid var(--mid-grey); }
+    .hours-table tr:last-child { border-bottom: none; }
+    .hours-table td { padding: 0.6rem 0; font-size: 0.82rem; }
+    .hours-table td:first-child { color: var(--text-mid); font-weight: 600; }
+    .hours-table td:last-child { text-align: right; color: var(--text-dark); }
+    .hours-open { color: #2e7d32 !important; font-weight: 700 !important; }
+
+    /* ── FORM ── */
+    .contact-form-wrap {
+      background: var(--white);
+      border: 1px solid var(--mid-grey);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-soft);
+    }
+    .form-group { margin-bottom: 1.3rem; }
+    .form-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+    }
+    .form-control {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1.5px solid var(--mid-grey);
+      border-radius: 10px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      color: var(--text-dark);
+      background: var(--white);
+      transition: border-color 0.25s, box-shadow 0.25s;
+      outline: none;
+      -webkit-appearance: none;
+    }
+    .form-control:focus {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(204,0,0,0.08);
+    }
+    .form-control::placeholder { color: var(--text-light); }
+    textarea.form-control { resize: vertical; min-height: 130px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1.5px solid var(--mid-grey);
+      border-radius: 10px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      color: var(--text-dark);
+      background: var(--white);
+      transition: border-color 0.25s;
+      outline: none;
+      cursor: pointer;
+    }
+    .form-select:focus { border-color: var(--red); box-shadow: 0 0 0 3px rgba(204,0,0,0.08); }
+    .form-check {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.8rem;
+      color: var(--text-mid);
+      cursor: pointer;
+    }
+    .form-check input[type="checkbox"] {
+      width: 16px; height: 16px;
+      accent-color: var(--red);
+      cursor: pointer;
+    }
+    .form-success {
+      display: none;
+      background: #e8f5e9;
+      border: 1px solid #a5d6a7;
+      border-radius: var(--radius);
+      padding: 1rem 1.2rem;
+      font-size: 0.85rem;
+      color: #2e7d32;
+      margin-top: 1rem;
+    }
+
+    /* ── SOCIAL ── */
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.8rem;
+      margin-top: 1.5rem;
+    }
+    .social-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.75rem 1rem;
+      background: var(--white);
+      border: 1px solid var(--mid-grey);
+      border-radius: var(--radius);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      transition: var(--transition);
+    }
+    .social-btn:hover { border-color: rgba(204,0,0,0.3); box-shadow: var(--shadow-soft); transform: translateY(-2px); color: var(--red); }
+    .social-btn-icon { font-size: 1.3rem; }
+
+    /* ── MAP ── */
+    .map-section { padding: 0 0 100px; background: var(--white); }
+    .map-wrap {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--mid-grey);
+      box-shadow: var(--shadow-soft);
+    }
+
+    /* ── FAQ ── */
+    .faq-item {
+      border: 1px solid var(--mid-grey);
+      border-radius: var(--radius);
+      margin-bottom: 0.8rem;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    .faq-item:hover { border-color: rgba(204,0,0,0.25); }
+    .faq-q {
+      padding: 1.1rem 1.5rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      background: var(--white);
+      user-select: none;
+    }
+    .faq-icon { color: var(--red); font-size: 1.2rem; font-weight: 300; transition: transform 0.3s; }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+      font-size: 0.83rem;
+      color: var(--text-mid);
+      line-height: 1.8;
+      padding: 0 1.5rem;
+      background: var(--off-white);
+    }
+    .faq-item.open .faq-a { max-height: 200px; padding: 1rem 1.5rem; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-item.open { border-color: rgba(204,0,0,0.3); }
+
+    @media(max-width:992px){
+      .contact-grid{grid-template-columns:1fr!important;}
+      .form-row{grid-template-columns:1fr!important;}
+      .social-grid{grid-template-columns:repeat(2,1fr)!important;}
+    }
+  </style>
+</head>
+<body>
+<script src="../js/layout.js"></script>
+
+<!-- ── PAGE HERO ── -->
+<section class="page-hero">
+  <div class="container-rrx">
+    <div class="page-hero-label">Get in Touch</div>
+    <h1 class="page-hero-title">We'd Love To<br><span>Hear From You</span></h1>
+    <p class="page-hero-desc">Ready to start your transformation? Have questions? We're here for you. Reach out and we'll get back to you within 24 hours.</p>
+  </div>
+</section>
+
+<!-- ── MAIN CONTACT SECTION ── -->
+<section style="padding:80px 0 100px;background:var(--off-white);">
+  <div class="container-rrx">
+    <div class="contact-grid">
+
+      <!-- LEFT: Info -->
+      <div>
+        <div class="section-label reveal">Our Details</div>
+        <h2 class="section-title reveal" style="margin-bottom:1.5rem;">Contact <span>Info</span></h2>
+
+        <div class="info-card reveal">
+          <div class="info-card-icon">📍</div>
+          <div>
+            <div class="info-card-label">Address</div>
+            <div class="info-card-value">RedRocX Fitness Club</div>
+            <div class="info-card-sub">Pen, Raigad District,<br>Maharashtra 402107, India</div>
+          </div>
+        </div>
+
+        <div class="info-card reveal">
+          <div class="info-card-icon">📞</div>
+          <div>
+            <div class="info-card-label">Phone</div>
+            <div class="info-card-value"><a href="tel:+919137601243" class="info-card-link">+91 91376 01243</a></div>
+            <div class="info-card-sub">Call or WhatsApp us anytime</div>
+          </div>
+        </div>
+
+        <div class="info-card reveal">
+          <div class="info-card-icon">✉️</div>
+          <div>
+            <div class="info-card-label">Email</div>
+            <div class="info-card-value"><a href="mailto:info@redrockx.in" class="info-card-link">info@redrockx.in</a></div>
+            <div class="info-card-sub">We reply within 24 hours</div>
+          </div>
+        </div>
+
+        <!-- Hours -->
+        <div class="reveal" style="background:var(--white);border:1px solid var(--mid-grey);border-radius:var(--radius);padding:1.5rem 1.8rem;margin-bottom:1.5rem;">
+          <div class="info-card-label" style="margin-bottom:1rem;">🕐 Gym Hours</div>
+          <table class="hours-table">
+            <tr><td>Monday – Friday</td><td class="hours-open">6:00 AM – 10:00 PM</td></tr>
+            <tr><td>Saturday</td><td class="hours-open">6:00 AM – 9:00 PM</td></tr>
+            <tr><td>Sunday</td><td class="hours-open">8:00 AM – 2:00 PM</td></tr>
+            <tr><td>Public Holidays</td><td style="color:var(--text-light);">Check WhatsApp</td></tr>
+          </table>
+        </div>
+
+        <!-- Social Links -->
+        <div class="reveal">
+          <div class="info-card-label" style="margin-bottom:0.5rem;">🌐 Follow Us</div>
+          <div class="social-grid">
+            <a href="https://www.instagram.com/redroc_x_wellness/" target="_blank" class="social-btn">
+              <span class="social-btn-icon">📷</span> Instagram
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61563380281038" target="_blank" class="social-btn">
+              <span class="social-btn-icon">📘</span> Facebook
+            </a>
+            <a href="https://wa.me/919137601243" target="_blank" class="social-btn">
+              <span class="social-btn-icon">💬</span> WhatsApp
+            </a>
+            <a href="https://maps.app.goo.gl/VQNYSq7yvDHKL4Fo7" target="_blank" class="social-btn">
+              <span class="social-btn-icon">📍</span> Google Maps
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Form -->
+      <div class="contact-form-wrap reveal-r">
+        <div class="section-label" style="margin-bottom:0.5rem;">Send a Message</div>
+        <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:0.07em;color:var(--text-dark);margin-bottom:0.4rem;">Let's Get Started <span style="color:var(--red);">Together</span></h3>
+        <p style="font-size:0.8rem;color:var(--text-light);margin-bottom:2rem;">Fill out the form and our team will contact you shortly.</p>
+
+        <form id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="firstName">First Name *</label>
+              <input type="text" id="firstName" class="form-control" placeholder="Rahul" required/>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="lastName">Last Name *</label>
+              <input type="text" id="lastName" class="form-control" placeholder="Sharma" required/>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="email">Email Address *</label>
+              <input type="email" id="email" class="form-control" placeholder="rahul@email.com" required/>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="phone">Phone Number *</label>
+              <input type="tel" id="phone" class="form-control" placeholder="+91 98765 43210" required/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="interest">I'm Interested In</label>
+            <select id="interest" class="form-select">
+              <option value="">— Select a Program —</option>
+              <option>General Gym Membership</option>
+              <option>Personal Training</option>
+              <option>Nutrition Consultation</option>
+              <option>Mind & Wellness Program</option>
+              <option>Weight Loss Program</option>
+              <option>Women's Fitness Program</option>
+              <option>Corporate Wellness</option>
+              <option>Body Transformation Package</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="goal">Your Goal</label>
+            <select id="goal" class="form-select">
+              <option value="">— Select Your Primary Goal —</option>
+              <option>Lose Weight / Fat Loss</option>
+              <option>Build Muscle / Bulk Up</option>
+              <option>Improve Fitness & Stamina</option>
+              <option>Manage a Health Condition</option>
+              <option>Stress Relief & Mental Wellness</option>
+              <option>General Health & Lifestyle</option>
+              <option>Athletic Performance</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="message">Your Message</label>
+            <textarea id="message" class="form-control" placeholder="Tell us a bit about yourself, your goals, and any questions you have..." rows="4"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-check">
+              <input type="checkbox" id="consent" required/>
+              I agree to be contacted by RedRocX Fitness Club via phone or WhatsApp.
+            </label>
+          </div>
+
+          <button type="submit" class="btn-rrx" style="width:100%;justify-content:center;padding:0.9rem;">
+            Send Message →
+          </button>
+
+          <div class="form-success" id="formSuccess">
+            ✅ Thank you! Your message has been sent. We'll get back to you within 24 hours.
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── MAP ── -->
+<section class="map-section">
+  <div class="container-rrx">
+    <div class="reveal" style="text-align:center;margin-bottom:2.5rem;">
+      <div class="section-label" style="justify-content:center;">Find Us</div>
+      <h2 class="section-title">We're in <span>Pen, Maharashtra</span></h2>
+      <p style="font-size:0.85rem;color:var(--text-light);">Conveniently located in the heart of Pen, Raigad District.</p>
+    </div>
+    <div class="map-wrap reveal">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3773.6041975!2d73.0908!3d18.7398!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be8603eb0aaaaab%3A0x3e87a86db62c2d14!2sRedroc%20X%20Wellness!5e0!3m2!1sen!2sin!4v1234567890"
+        width="100%"
+        height="450"
+        style="border:0;display:block;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="RedRocX Fitness Club Location">
+      </iframe>
+    </div>
+    <div style="text-align:center;margin-top:1.5rem;">
+      <a href="https://maps.app.goo.gl/VQNYSq7yvDHKL4Fo7" target="_blank" class="btn-rrx">
+        📍 Open in Google Maps →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section style="padding:100px 0;background:var(--off-white);">
+  <div class="container-rrx" style="max-width:780px;">
+    <div class="reveal" style="text-align:center;margin-bottom:3rem;">
+      <div class="section-label" style="justify-content:center;">Common Questions</div>
+      <h2 class="section-title">Frequently <span>Asked</span></h2>
+    </div>
+
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        What are your gym timings?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">We're open Monday to Friday from 6:00 AM to 10:00 PM, Saturday from 6:00 AM to 9:00 PM, and Sunday from 8:00 AM to 2:00 PM. Check our WhatsApp for holiday schedule updates.</div>
+    </div>
+
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Do you offer a free trial session?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">Yes! We offer a complimentary first consultation and gym tour for all new members. Personal training clients can also book a free 30-minute trial session with one of our trainers. Contact us to schedule.</div>
+    </div>
+
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Is RedRocX suitable for beginners?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">Absolutely! We welcome members of all fitness levels. Our trainers will assess your current fitness level and design a beginner-friendly program that progressively builds your strength and stamina safely.</div>
+    </div>
+
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Do you have special programs for women?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">Yes! We have a dedicated Women's Fitness program, PCOD and hormonal balance nutrition plans, post-natal fitness programs, and a safe, comfortable environment that prioritizes women's wellness at every step.</div>
+    </div>
+
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Can I combine fitness training with nutrition coaching?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">Yes, and we highly recommend it! Our Body Transformation and Elite membership packages combine personalized fitness training with nutrition coaching for the fastest, most sustainable results.</div>
+    </div>
+
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Do you offer corporate wellness programs?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">Yes! We offer customized corporate wellness programs for companies in the Pen and Raigad region, including group sessions, health workshops, and employee fitness packages. Contact us for corporate rates.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── QUICK CTA ── -->
+<section style="padding:80px 0;background:var(--red);text-align:center;">
+  <div class="container-rrx">
+    <div class="reveal">
+      <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,5vw,3.2rem);color:white;letter-spacing:0.05em;margin-bottom:0.8rem;">Still Have Questions?</h2>
+      <p style="font-size:0.9rem;color:rgba(255,255,255,0.8);margin-bottom:2rem;">Call us directly or WhatsApp us — we respond fast!</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="tel:+919137601243" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.8rem 2.2rem;background:white;color:var(--red);font-weight:700;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;border-radius:10px;">📞 Call Now</a>
+        <a href="https://wa.me/919137601243" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.75rem 2rem;background:transparent;color:white;font-weight:700;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;border:2px solid rgba(255,255,255,0.6);border-radius:10px;">💬 WhatsApp Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="../js/main.js"></script>
+<script>
+// ── FORM SUBMIT ──
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const firstName = document.getElementById('firstName').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const consent = document.getElementById('consent').checked;
+  if (!firstName || !email || !phone || !consent) {
+    alert('Please fill in all required fields and agree to be contacted.');
+    return;
+  }
+  const btn = this.querySelector('button[type="submit"]');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  setTimeout(() => {
+    document.getElementById('formSuccess').style.display = 'block';
+    btn.textContent = '✓ Message Sent!';
+    btn.style.background = '#2e7d32';
+    this.reset();
+  }, 1200);
+});
+
+// ── FAQ ACCORDION ──
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+</script>
+<style>
+@media(max-width:992px){
+  .contact-grid{grid-template-columns:1fr!important;}
+  .form-row{grid-template-columns:1fr!important;}
+}
+</style>
+</body>
+</html>

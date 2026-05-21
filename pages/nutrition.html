@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Nutrition | RedRocX Fitness Club</title>
+  <meta name="description" content="Personalized diet plans, weight management, hormonal balance, and nutrition coaching at RedRocX Fitness Club, Pen, Maharashtra."/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <style>
+    /* ── NUTRITION CATEGORIES ── */
+    .nutr-card {
+      background: var(--white);
+      border: 1px solid var(--mid-grey);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    .nutr-card:hover { box-shadow: var(--shadow-red); border-color: rgba(204,0,0,0.25); transform: translateY(-5px); }
+    .nutr-card-header {
+      padding: 2rem 2rem 1.5rem;
+      position: relative;
+    }
+    .nutr-card-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .nutr-card-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.07em;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+    }
+    .nutr-card-desc {
+      font-size: 0.83rem;
+      color: var(--text-light);
+      line-height: 1.8;
+    }
+    .nutr-card-body { padding: 0 2rem 2rem; }
+    .nutr-card-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .nutr-card-list li {
+      font-size: 0.8rem;
+      color: var(--text-mid);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid var(--mid-grey);
+    }
+    .nutr-card-list li:last-child { border-bottom: none; }
+    .nutr-card-list li::before { content: '●'; color: var(--red); font-size: 0.5rem; flex-shrink: 0; }
+    .nutr-card-footer { padding: 0 2rem 2rem; }
+
+    /* ── MEAL PLAN PREVIEW ── */
+    .meal-plan-section { padding: 100px 0; background: var(--white); }
+    .meal-day {
+      background: var(--off-white);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      border: 1px solid var(--mid-grey);
+      margin-bottom: 1rem;
+      transition: var(--transition);
+    }
+    .meal-day:hover { border-color: rgba(204,0,0,0.25); box-shadow: var(--shadow-soft); }
+    .meal-day-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.08em;
+      color: var(--red);
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .meal-item {
+      display: flex;
+      gap: 0.8rem;
+      margin-bottom: 0.5rem;
+      align-items: flex-start;
+    }
+    .meal-time {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--red);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      min-width: 75px;
+      margin-top: 0.15rem;
+    }
+    .meal-food { font-size: 0.82rem; color: var(--text-mid); line-height: 1.5; }
+    .meal-food strong { color: var(--text-dark); }
+
+    /* ── CONDITION PROGRAMS ── */
+    .condition-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 2rem;
+      border-left: 4px solid var(--red);
+      box-shadow: var(--shadow-soft);
+      transition: var(--transition);
+    }
+    .condition-card:hover { box-shadow: var(--shadow-red); transform: translateX(4px); }
+    .condition-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+    .condition-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.07em;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+    }
+    .condition-desc { font-size: 0.82rem; color: var(--text-light); line-height: 1.8; }
+    .condition-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.8rem; }
+
+    /* ── MACRO CALCULATOR ── */
+    .macro-section { padding: 100px 0; background: var(--off-white); }
+    .macro-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      border: 1px solid var(--mid-grey);
+      box-shadow: var(--shadow-soft);
+    }
+    .macro-bar {
+      height: 12px;
+      border-radius: 6px;
+      background: var(--mid-grey);
+      margin: 0.5rem 0 1.2rem;
+      overflow: hidden;
+    }
+    .macro-fill { height: 100%; border-radius: 6px; }
+    .macro-label { display: flex; justify-content: space-between; font-size: 0.78rem; }
+    .macro-name { font-weight: 600; color: var(--text-dark); }
+    .macro-pct { font-weight: 700; color: var(--red); }
+
+    /* ── SUPPLEMENTS ── */
+    .supp-card {
+      background: var(--white);
+      border: 1px solid var(--mid-grey);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      transition: var(--transition);
+    }
+    .supp-card:hover { box-shadow: var(--shadow-soft); border-color: rgba(204,0,0,0.2); }
+    .supp-icon { font-size: 2rem; flex-shrink: 0; }
+    .supp-name { font-weight: 700; font-size: 0.88rem; color: var(--text-dark); margin-bottom: 0.3rem; }
+    .supp-desc { font-size: 0.78rem; color: var(--text-light); line-height: 1.7; }
+
+    @media(max-width:992px){
+      [style*="grid-template-columns:repeat(3,1fr)"]{grid-template-columns:1fr 1fr!important;}
+      [style*="grid-template-columns:1fr 1fr"]:not(.meal-item){grid-template-columns:1fr!important;}
+    }
+    @media(max-width:576px){
+      [style*="grid-template-columns:repeat(3,1fr)"]{grid-template-columns:1fr!important;}
+    }
+  </style>
+</head>
+<body>
+<script src="../js/layout.js"></script>
+
+<!-- ── PAGE HERO ── -->
+<section class="page-hero">
+  <div class="container-rrx">
+    <div class="page-hero-label">Nutrition Programs</div>
+    <h1 class="page-hero-title">Fuel Your Body<br>The <span>Right Way</span></h1>
+    <p class="page-hero-desc">Science-backed nutrition plans crafted by certified dietitians to help you achieve your goals — whether it's fat loss, muscle gain, or managing health conditions.</p>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;">
+      <a href="contact.html" class="btn-rrx">Get My Diet Plan →</a>
+      <a href="#programs" class="btn-rrx-outline">Explore Programs</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── NUTRITION INTRO ── -->
+<section style="padding:80px 0;background:var(--red);">
+  <div class="container-rrx">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center;">
+      <div class="reveal d1">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:3rem;color:white;line-height:1;"><span data-count="500" data-suffix="+">500+</span></div>
+        <div style="font-size:0.65rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-top:0.3rem;">Diet Plans Created</div>
+      </div>
+      <div class="reveal d2">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:3rem;color:white;line-height:1;"><span data-count="3" data-suffix="+">3+</span></div>
+        <div style="font-size:0.65rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-top:0.3rem;">Expert Nutritionists</div>
+      </div>
+      <div class="reveal d3">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:3rem;color:white;line-height:1;"><span data-count="8">8</span></div>
+        <div style="font-size:0.65rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-top:0.3rem;">Condition Programs</div>
+      </div>
+      <div class="reveal d4">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:3rem;color:white;line-height:1;">100<span style="font-size:1.5rem;">%</span></div>
+        <div style="font-size:0.65rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-top:0.3rem;">Personalized</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── NUTRITION PROGRAMS ── -->
+<section id="programs" style="padding:100px 0;background:var(--off-white);">
+  <div class="container-rrx">
+    <div class="reveal" style="margin-bottom:3.5rem;">
+      <div class="section-label">Core Programs</div>
+      <h2 class="section-title">Nutrition <span>Services</span></h2>
+      <p class="section-sub">Tailored for every body type, goal, and health condition.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.8rem;">
+
+      <div class="nutr-card reveal d1">
+        <div class="nutr-card-header">
+          <div class="nutr-card-icon">⚖️</div>
+          <div class="nutr-card-title">Weight Management</div>
+          <p class="nutr-card-desc">Customized plans for healthy fat loss, sustainable weight gain, and long-term transformation.</p>
+        </div>
+        <div class="nutr-card-body">
+          <ul class="nutr-card-list">
+            <li>Calorie-controlled meal plans</li>
+            <li>Macro tracking guidance</li>
+            <li>Weekly check-ins & adjustments</li>
+            <li>Cheat meal strategies</li>
+            <li>Progress measurement</li>
+          </ul>
+        </div>
+        <div class="nutr-card-footer">
+          <div style="display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:1.2rem;">
+            <span class="red-badge">Weight Loss</span>
+            <span class="red-badge">Weight Gain</span>
+            <span class="red-badge">Fat Loss</span>
+          </div>
+          <a href="contact.html" class="btn-rrx" style="width:100%;justify-content:center;font-size:0.7rem;">Get Plan →</a>
+        </div>
+      </div>
+
+      <div class="nutr-card reveal d2">
+        <div class="nutr-card-header">
+          <div class="nutr-card-icon">🔬</div>
+          <div class="nutr-card-title">Hormonal Balance</div>
+          <p class="nutr-card-desc">Expert nutrition programs for PCOD, thyroid issues, and women's wellness with sustainable lifestyle guidance.</p>
+        </div>
+        <div class="nutr-card-body">
+          <ul class="nutr-card-list">
+            <li>Hormone-balancing meal plans</li>
+            <li>Anti-inflammatory diet protocols</li>
+            <li>PCOD-specific nutrition</li>
+            <li>Thyroid support foods</li>
+            <li>Women's cycle nutrition</li>
+          </ul>
+        </div>
+        <div class="nutr-card-footer">
+          <div style="display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:1.2rem;">
+            <span class="red-badge">PCOD</span>
+            <span class="red-badge">Thyroid</span>
+            <span class="red-badge">Women Care</span>
+          </div>
+          <a href="contact.html" class="btn-rrx" style="width:100%;justify-content:center;font-size:0.7rem;">Get Plan →</a>
+        </div>
+      </div>
+
+      <div class="nutr-card reveal d3">
+        <div class="nutr-card-header">
+          <div class="nutr-card-icon">❤️‍🩹</div>
+          <div class="nutr-card-title">Disease Management</div>
+          <p class="nutr-card-desc">Therapeutic nutrition support for diabetes, cardiac care, and overall internal wellness management.</p>
+        </div>
+        <div class="nutr-card-body">
+          <ul class="nutr-card-list">
+            <li>Diabetic-friendly meal plans</li>
+            <li>Cardiac diet protocols</li>
+            <li>Blood sugar management</li>
+            <li>Cholesterol control nutrition</li>
+            <li>Gut health optimization</li>
+          </ul>
+        </div>
+        <div class="nutr-card-footer">
+          <div style="display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:1.2rem;">
+            <span class="red-badge">Diabetes</span>
+            <span class="red-badge">Cardiac</span>
+            <span class="red-badge">Lifestyle</span>
+          </div>
+          <a href="contact.html" class="btn-rrx" style="width:100%;justify-content:center;font-size:0.7rem;">Get Plan →</a>
+        </div>
+      </div>
+
+      <div class="nutr-card reveal d1">
+        <div class="nutr-card-header">
+          <div class="nutr-card-icon">💪</div>
+          <div class="nutr-card-title">Sports Nutrition</div>
+          <p class="nutr-card-desc">Performance nutrition for athletes and gym enthusiasts to maximize training output and recovery.</p>
+        </div>
+        <div class="nutr-card-body">
+          <ul class="nutr-card-list">
+            <li>Pre & post-workout nutrition</li>
+            <li>Muscle building meal plans</li>
+            <li>Supplement guidance</li>
+            <li>Hydration protocols</li>
+          </ul>
+        </div>
+        <div class="nutr-card-footer">
+          <div style="display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:1.2rem;">
+            <span class="red-badge">Performance</span>
+            <span class="red-badge">Muscle Gain</span>
+          </div>
+          <a href="contact.html" class="btn-rrx" style="width:100%;justify-content:center;font-size:0.7rem;">Get Plan →</a>
+        </div>
+      </div>
+
+      <div class="nutr-card reveal d2">
+        <div class="nutr-card-header">
+          <div class="nutr-card-icon">🍽️</div>
+          <div class="nutr-card-title">Vegetarian & Vegan Plans</div>
+          <p class="nutr-card-desc">Nutrient-complete plant-based plans ensuring you meet all your protein and micronutrient needs.</p>
+        </div>
+        <div class="nutr-card-body">
+          <ul class="nutr-card-list">
+            <li>Complete protein combinations</li>
+            <li>Iron and B12 optimization</li>
+            <li>Plant-based meal prepping</li>
+            <li>Vegan supplement guide</li>
+          </ul>
+        </div>
+        <div class="nutr-card-footer">
+          <div style="display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:1.2rem;">
+            <span class="red-badge">Veg</span>
+            <span class="red-badge">Vegan</span>
+          </div>
+          <a href="contact.html" class="btn-rrx" style="width:100%;justify-content:center;font-size:0.7rem;">Get Plan →</a>
+        </div>
+      </div>
+
+      <div class="nutr-card reveal d3">
+        <div class="nutr-card-header">
+          <div class="nutr-card-icon">👶</div>
+          <div class="nutr-card-title">Pre/Post-Natal Nutrition</div>
+          <p class="nutr-card-desc">Specialized nutrition plans for pregnancy, breastfeeding, and postpartum recovery.</p>
+        </div>
+        <div class="nutr-card-body">
+          <ul class="nutr-card-list">
+            <li>Trimester-specific meal plans</li>
+            <li>Postpartum weight recovery</li>
+            <li>Breastfeeding nutrition</li>
+            <li>Iron and folate guidance</li>
+          </ul>
+        </div>
+        <div class="nutr-card-footer">
+          <div style="display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:1.2rem;">
+            <span class="red-badge">Pregnancy</span>
+            <span class="red-badge">Postnatal</span>
+          </div>
+          <a href="contact.html" class="btn-rrx" style="width:100%;justify-content:center;font-size:0.7rem;">Get Plan →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── SAMPLE MEAL PLAN ── -->
+<section class="meal-plan-section">
+  <div class="container-rrx">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;">
+      <div>
+        <div class="section-label reveal">Sample Plan</div>
+        <h2 class="section-title reveal">A Day on a<br><span>RedRocX Diet</span></h2>
+        <p style="font-size:0.88rem;color:var(--text-mid);line-height:1.9;margin-bottom:2rem;" class="reveal">Here's a sample day from our weight loss nutrition plan. Every plan is fully customized for you.</p>
+
+        <div class="meal-day reveal">
+          <div class="meal-day-title">☀️ Morning</div>
+          <div class="meal-item"><div class="meal-time">6:30 AM</div><div class="meal-food"><strong>Warm Lemon Water</strong> + 5 soaked almonds, 2 walnuts</div></div>
+          <div class="meal-item"><div class="meal-time">8:00 AM</div><div class="meal-food"><strong>Breakfast:</strong> Oats porridge with milk + 2 boiled eggs (or paneer)</div></div>
+        </div>
+
+        <div class="meal-day reveal">
+          <div class="meal-day-title">🌞 Midday</div>
+          <div class="meal-item"><div class="meal-time">11:00 AM</div><div class="meal-food"><strong>Mid-Morning:</strong> Fresh seasonal fruit + 1 tbsp seeds mix</div></div>
+          <div class="meal-item"><div class="meal-time">1:30 PM</div><div class="meal-food"><strong>Lunch:</strong> 2 chapati + 1 bowl dal + sabzi + salad + curd</div></div>
+        </div>
+
+        <div class="meal-day reveal">
+          <div class="meal-day-title">🌙 Evening</div>
+          <div class="meal-item"><div class="meal-time">4:00 PM</div><div class="meal-food"><strong>Pre-Workout:</strong> Banana + handful of peanuts</div></div>
+          <div class="meal-item"><div class="meal-time">7:00 PM</div><div class="meal-food"><strong>Post-Workout:</strong> Protein shake / buttermilk + light snack</div></div>
+          <div class="meal-item"><div class="meal-time">8:30 PM</div><div class="meal-food"><strong>Dinner:</strong> 1 chapati + soup or khichdi + steamed vegetables</div></div>
+        </div>
+
+        <p style="font-size:0.75rem;color:var(--text-light);margin-top:1.2rem;font-style:italic;">* This is a sample plan. Your customized plan will be tailored to your body type, goals, and preferences.</p>
+      </div>
+
+      <div class="reveal-r">
+        <!-- Macro breakdown -->
+        <div class="macro-card" style="margin-bottom:1.8rem;">
+          <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:var(--text-dark);letter-spacing:0.07em;margin-bottom:0.4rem;">Sample <span style="color:var(--red);">Macro Split</span></h3>
+          <p style="font-size:0.78rem;color:var(--text-light);margin-bottom:1.8rem;">For a 1,800 kcal weight loss plan</p>
+
+          <div class="macro-label"><span class="macro-name">🍗 Protein</span><span class="macro-pct">30% · 135g</span></div>
+          <div class="macro-bar"><div class="macro-fill" style="width:30%;background:var(--red);"></div></div>
+
+          <div class="macro-label"><span class="macro-name">🌾 Carbohydrates</span><span class="macro-pct">45% · 202g</span></div>
+          <div class="macro-bar"><div class="macro-fill" style="width:45%;background:#f5a623;"></div></div>
+
+          <div class="macro-label"><span class="macro-name">🥑 Healthy Fats</span><span class="macro-pct">25% · 50g</span></div>
+          <div class="macro-bar"><div class="macro-fill" style="width:25%;background:#4CAF50;"></div></div>
+        </div>
+
+        <!-- Supplements -->
+        <div>
+          <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--text-dark);letter-spacing:0.07em;margin-bottom:1.2rem;">Recommended <span style="color:var(--red);">Supplements</span></h3>
+          <div style="display:flex;flex-direction:column;gap:0.8rem;">
+            <div class="supp-card"><div class="supp-icon">💊</div><div><div class="supp-name">Whey Protein</div><div class="supp-desc">For muscle repair and growth post-workout. Recommended: 25–30g post-training.</div></div></div>
+            <div class="supp-card"><div class="supp-icon">🌊</div><div><div class="supp-name">Omega-3 Fish Oil</div><div class="supp-desc">Reduces inflammation, supports joint health and fat metabolism.</div></div></div>
+            <div class="supp-card"><div class="supp-icon">☀️</div><div><div class="supp-name">Vitamin D3 + K2</div><div class="supp-desc">Essential for bone health, immunity and hormonal balance.</div></div></div>
+            <div class="supp-card"><div class="supp-icon">🧪</div><div><div class="supp-name">Multivitamin</div><div class="supp-desc">Fill nutritional gaps and ensure micronutrient sufficiency daily.</div></div></div>
+          </div>
+          <p style="font-size:0.72rem;color:var(--text-light);margin-top:0.8rem;">* Supplement advice is personalized. Our nutritionist will guide you based on your bloodwork and goals.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONDITION MANAGEMENT ── -->
+<section style="padding:100px 0;background:var(--off-white);">
+  <div class="container-rrx">
+    <div class="reveal" style="margin-bottom:3rem;">
+      <div class="section-label">Medical Nutrition</div>
+      <h2 class="section-title">Condition-Specific <span>Programs</span></h2>
+      <p class="section-sub">Our nutritionists work closely with your doctors to provide evidence-based dietary management for health conditions.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;">
+      <div class="condition-card reveal d1">
+        <div class="condition-icon">🩸</div>
+        <div class="condition-name">Type 2 Diabetes</div>
+        <p class="condition-desc">Glycemic index–based meal planning to manage blood sugar levels and reduce medication dependency.</p>
+        <div class="condition-tags"><span class="red-badge">Blood Sugar</span><span class="red-badge">Insulin</span></div>
+      </div>
+      <div class="condition-card reveal d2">
+        <div class="condition-icon">💜</div>
+        <div class="condition-name">PCOD / PCOS</div>
+        <p class="condition-desc">Anti-inflammatory, hormone-balancing diet to manage PCOD symptoms and improve reproductive health.</p>
+        <div class="condition-tags"><span class="red-badge">Hormones</span><span class="red-badge">Women</span></div>
+      </div>
+      <div class="condition-card reveal d3">
+        <div class="condition-icon">🦋</div>
+        <div class="condition-name">Thyroid Disorders</div>
+        <p class="condition-desc">Iodine-balanced nutrition plans that support thyroid function for both hypo and hyperthyroidism.</p>
+        <div class="condition-tags"><span class="red-badge">Thyroid</span><span class="red-badge">Metabolism</span></div>
+      </div>
+      <div class="condition-card reveal d1">
+        <div class="condition-icon">❤️</div>
+        <div class="condition-name">Cardiac Health</div>
+        <p class="condition-desc">Heart-healthy diets to reduce cholesterol, manage blood pressure, and support cardiovascular health.</p>
+        <div class="condition-tags"><span class="red-badge">Cholesterol</span><span class="red-badge">BP</span></div>
+      </div>
+      <div class="condition-card reveal d2">
+        <div class="condition-icon">🦴</div>
+        <div class="condition-name">Joint & Bone Health</div>
+        <p class="condition-desc">Calcium and anti-inflammatory nutrition to support joint mobility and bone density.</p>
+        <div class="condition-tags"><span class="red-badge">Calcium</span><span class="red-badge">Arthritis</span></div>
+      </div>
+      <div class="condition-card reveal d3">
+        <div class="condition-icon">🧬</div>
+        <div class="condition-name">Gut Health</div>
+        <p class="condition-desc">Probiotic-rich, fiber-balanced plans to improve digestion, microbiome health and immunity.</p>
+        <div class="condition-tags"><span class="red-badge">Digestion</span><span class="red-badge">Gut</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section style="padding:80px 0;background:var(--red);text-align:center;">
+  <div class="container-rrx">
+    <div class="reveal">
+      <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,5vw,3.2rem);color:white;letter-spacing:0.05em;margin-bottom:0.8rem;">Start Your Nutrition Journey Today</h2>
+      <p style="font-size:0.9rem;color:rgba(255,255,255,0.8);margin-bottom:2rem;">Get a free nutrition assessment and discover the plan that's right for you.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="contact.html" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.8rem 2.2rem;background:white;color:var(--red);font-weight:700;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;border-radius:10px;">Get Free Assessment →</a>
+        <a href="tel:+919137601243" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.75rem 2rem;background:transparent;color:white;font-weight:700;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;border:2px solid rgba(255,255,255,0.6);border-radius:10px;">📞 Call Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="../js/main.js"></script>
+<style>
+@media(max-width:992px){
+  [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}
+  [style*="grid-template-columns:repeat(3,1fr)"]{grid-template-columns:1fr 1fr!important;}
+  [style*="grid-template-columns:repeat(4,1fr)"]{grid-template-columns:1fr 1fr!important;}
+}
+@media(max-width:576px){
+  [style*="grid-template-columns:repeat(3,1fr)"]{grid-template-columns:1fr!important;}
+  [style*="grid-template-columns:repeat(4,1fr)"]{grid-template-columns:1fr 1fr!important;}
+}
+</style>
+</body>
+</html>

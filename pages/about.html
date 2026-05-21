@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>About Us | RedRocX Fitness Club</title>
+  <meta name="description" content="Learn about RedRocX Fitness Club — our mission, vision, trainers, and why we're the best gym in Pen, Maharashtra."/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <style>
+    /* ── MISSION / VISION ── */
+    .mv-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .mv-card {
+      background: var(--white);
+      border: 1px solid var(--mid-grey);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    .mv-card:hover { box-shadow: var(--shadow-red); border-color: rgba(204,0,0,0.25); transform: translateY(-4px); }
+    .mv-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px; height: 100%;
+      background: var(--red);
+    }
+    .mv-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .mv-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: 0.08em;
+      color: var(--text-dark);
+      margin-bottom: 1rem;
+    }
+    .mv-title span { color: var(--red); }
+    .mv-text { font-size: 0.87rem; color: var(--text-mid); line-height: 1.9; }
+
+    /* ── FOUNDER ── */
+    .founder-section { padding: 100px 0; background: var(--off-white); }
+    .founder-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .founder-img-wrap {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: visible;
+    }
+    .founder-img-placeholder {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: linear-gradient(135deg, var(--red-pale), #ffe0e0);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      border: 1px solid rgba(204,0,0,0.15);
+      box-shadow: var(--shadow-med);
+    }
+    .founder-frame {
+      position: absolute;
+      top: -12px; left: -12px; right: 12px; bottom: 12px;
+      border: 2px solid var(--red);
+      border-radius: var(--radius-lg);
+      z-index: -1;
+    }
+    .founder-badge {
+      position: absolute;
+      bottom: -16px; right: -16px;
+      background: var(--red);
+      color: white;
+      border-radius: var(--radius);
+      padding: 1rem 1.4rem;
+      box-shadow: 0 8px 24px rgba(204,0,0,0.35);
+    }
+    .founder-badge-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      line-height: 1;
+    }
+    .founder-badge-label { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.85; }
+    .founder-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.4rem;
+      letter-spacing: 0.06em;
+      color: var(--text-dark);
+      margin-bottom: 0.3rem;
+    }
+    .founder-role {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 1.5rem;
+    }
+    .founder-quote {
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--text-mid);
+      line-height: 1.8;
+      border-left: 3px solid var(--red);
+      padding-left: 1.2rem;
+      margin: 1.5rem 0;
+    }
+
+    /* ── TRAINERS ── */
+    .trainers-section { padding: 100px 0; background: var(--white); }
+    .trainer-card {
+      background: var(--white);
+      border: 1px solid var(--mid-grey);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: var(--transition);
+      text-align: center;
+    }
+    .trainer-card:hover { box-shadow: var(--shadow-red); border-color: rgba(204,0,0,0.25); transform: translateY(-6px); }
+    .trainer-photo {
+      background: linear-gradient(135deg, var(--red-pale), #ffd5d5);
+      height: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      position: relative;
+    }
+    .trainer-photo-label {
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(204,0,0,0.5);
+      margin-top: 0.3rem;
+    }
+    .trainer-red-bar {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--red);
+    }
+    .trainer-body { padding: 1.5rem 1.8rem 2rem; }
+    .trainer-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.07em;
+      color: var(--text-dark);
+    }
+    .trainer-role { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); margin: 0.3rem 0 1rem; }
+    .trainer-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; justify-content: center; }
+    .trainer-tag {
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      background: var(--red-muted); color: var(--red);
+      padding: 0.25rem 0.65rem; border-radius: 50px;
+      border: 1px solid rgba(204,0,0,0.15);
+    }
+    .trainer-bio { font-size: 0.78rem; color: var(--text-light); line-height: 1.7; margin-top: 0.8rem; }
+
+    /* ── WHY US ── */
+    .why-section { padding: 100px 0; background: var(--off-white); }
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.8rem; }
+    .why-card {
+      background: var(--white);
+      border: 1px solid var(--mid-grey);
+      border-radius: var(--radius);
+      padding: 2rem 1.8rem;
+      transition: var(--transition);
+    }
+    .why-card:hover { box-shadow: var(--shadow-red); border-color: rgba(204,0,0,0.25); transform: translateY(-4px); }
+    .why-icon {
+      width: 52px; height: 52px;
+      background: var(--red-muted);
+      border: 1px solid rgba(204,0,0,0.2);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin-bottom: 1.2rem;
+    }
+    .why-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.25rem; letter-spacing: 0.06em; color: var(--text-dark); margin-bottom: 0.6rem; }
+    .why-desc { font-size: 0.82rem; color: var(--text-light); line-height: 1.8; }
+
+    /* ── VALUES ── */
+    .values-section { padding: 80px 0; background: var(--red); }
+    .values-section .section-title { color: white; }
+    .values-section .section-title span { color: rgba(255,255,255,0.7); }
+    .values-section .section-label { color: rgba(255,255,255,0.7); }
+    .values-section .section-label::before { background: rgba(255,255,255,0.5); }
+    .value-item { text-align: center; padding: 1rem; }
+    .value-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4rem;
+      color: rgba(255,255,255,0.15);
+      line-height: 1;
+      display: block;
+    }
+    .value-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: white; letter-spacing: 0.08em; }
+    .value-desc { font-size: 0.78rem; color: rgba(255,255,255,0.65); line-height: 1.7; margin-top: 0.4rem; }
+
+    @media(max-width:992px){
+      .mv-grid,.founder-inner,.why-grid{ grid-template-columns:1fr!important; }
+      .founder-inner { gap: 3rem; }
+    }
+    @media(max-width:768px){
+      [style*="grid-template-columns:repeat(4,1fr)"]{ grid-template-columns:1fr 1fr!important; }
+    }
+  </style>
+</head>
+<body>
+<script src="../js/layout.js"></script>
+
+<!-- ── PAGE HERO ── -->
+<section class="page-hero">
+  <div class="container-rrx">
+    <div class="page-hero-label">About RedRocX</div>
+    <h1 class="page-hero-title">We Are More Than<br>A <span>Gym</span></h1>
+    <p class="page-hero-desc">A performance-driven wellness space founded with passion, purpose, and an unwavering commitment to your transformation.</p>
+  </div>
+</section>
+
+<!-- ── MISSION & VISION ── -->
+<section class="section-pad" style="background:var(--white);">
+  <div class="container-rrx">
+    <div class="reveal" style="margin-bottom:3rem;">
+      <div class="section-label">Our Purpose</div>
+      <h2 class="section-title">Mission & <span>Vision</span></h2>
+    </div>
+    <div class="mv-grid">
+      <div class="mv-card reveal d1">
+        <div class="mv-icon">🎯</div>
+        <div class="mv-title">Our <span>Mission</span></div>
+        <p class="mv-text">To deliver a premium, holistic fitness experience that empowers every individual — regardless of age, ability, or background — to achieve their health and wellness goals through expert guidance, cutting-edge facilities, and a supportive community.</p>
+        <p class="mv-text" style="margin-top:1rem;">We combine Mind, Nutrition, and Fitness to create lasting transformations that go beyond the gym floor and into everyday life.</p>
+      </div>
+      <div class="mv-card reveal d2">
+        <div class="mv-icon">🌟</div>
+        <div class="mv-title">Our <span>Vision</span></div>
+        <p class="mv-text">To be the most trusted and impactful wellness destination in Maharashtra — a place where science meets passion, where every member feels seen and supported, and where transformation is not just promised, but delivered.</p>
+        <p class="mv-text" style="margin-top:1rem;">We envision a Pen where every resident has access to world-class fitness and wellness resources, right in their hometown.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── VALUES ── -->
+<section class="values-section">
+  <div class="container-rrx">
+    <div class="reveal" style="text-align:center;margin-bottom:3rem;">
+      <div class="section-label" style="justify-content:center;">What Drives Us</div>
+      <h2 class="section-title">Our Core <span>Values</span></h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;">
+      <div class="value-item reveal d1">
+        <span class="value-num">01</span>
+        <div class="value-title">Excellence</div>
+        <div class="value-desc">We pursue the highest standard in every workout, every plan, and every member interaction.</div>
+      </div>
+      <div class="value-item reveal d2">
+        <span class="value-num">02</span>
+        <div class="value-title">Integrity</div>
+        <div class="value-desc">Honest guidance, transparent pricing, and results-focused coaching — always.</div>
+      </div>
+      <div class="value-item reveal d3">
+        <span class="value-num">03</span>
+        <div class="value-title">Empowerment</div>
+        <div class="value-desc">We build confidence, strength, and independence — in the gym and beyond.</div>
+      </div>
+      <div class="value-item reveal d4">
+        <span class="value-num">04</span>
+        <div class="value-title">Community</div>
+        <div class="value-desc">A tribe that pushes together, celebrates together, and grows together.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOUNDER ── -->
+<section class="founder-section">
+  <div class="container-rrx">
+    <div class="founder-inner">
+      <div class="founder-img-wrap reveal-l">
+        <div class="founder-img-placeholder">👩‍💼</div>
+        <div class="founder-frame"></div>
+        <div class="founder-badge">
+          <div class="founder-badge-num">7+</div>
+          <div class="founder-badge-label">Years Leading</div>
+        </div>
+      </div>
+      <div class="reveal-r">
+        <div class="section-label">Founder & Director</div>
+        <div class="founder-name">Tarannum Kazmi</div>
+        <div class="founder-role">Founder & Head of Wellness</div>
+        <div class="founder-quote">"I started RedRocX with one simple belief — that premium fitness should be accessible to everyone in our community, not just in big cities."</div>
+        <p style="font-size:0.88rem;color:var(--text-mid);line-height:1.9;margin-bottom:1rem;">
+          Tarannum Kazmi founded REDROC X Wellness in 2018 with a vision to bring a world-class fitness experience to Pen, Maharashtra. With a background in sports science and holistic wellness, she built a space that addresses not just physical fitness but the complete mind-body-nutrition triad.
+        </p>
+        <p style="font-size:0.88rem;color:var(--text-mid);line-height:1.9;margin-bottom:1.5rem;">
+          Under her leadership, RedRocX has grown into the region's premier wellness destination, serving hundreds of members with specialized programs for women's health, corporate wellness, and lifestyle transformation.
+        </p>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+          <div class="red-badge">Sports Science</div>
+          <div class="red-badge">Nutrition Certified</div>
+          <div class="red-badge">Women's Wellness</div>
+          <div class="red-badge">Corporate Wellness</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRAINERS ── -->
+<section class="trainers-section">
+  <div class="container-rrx">
+    <div class="reveal" style="text-align:center;margin-bottom:3.5rem;">
+      <div class="section-label" style="justify-content:center;">Expert Team</div>
+      <h2 class="section-title">Meet Our <span>Trainers</span></h2>
+      <p class="section-sub" style="margin:0 auto;text-align:center;">Certified professionals dedicated to your transformation.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.8rem;">
+
+      <div class="trainer-card reveal d1">
+        <div class="trainer-photo">
+          <div style="font-size:3.5rem;">🏋️</div>
+          <div class="trainer-photo-label">Photo Coming Soon</div>
+          <div class="trainer-red-bar"></div>
+        </div>
+        <div class="trainer-body">
+          <div class="trainer-name">Omkar Sathe</div>
+          <div class="trainer-role">Head Trainer</div>
+          <div class="trainer-tags">
+            <span class="trainer-tag">Strength</span>
+            <span class="trainer-tag">Conditioning</span>
+          </div>
+          <p class="trainer-bio">Specializes in strength and conditioning programs with 6+ years of experience transforming physiques.</p>
+        </div>
+      </div>
+
+      <div class="trainer-card reveal d2">
+        <div class="trainer-photo">
+          <div style="font-size:3.5rem;">💪</div>
+          <div class="trainer-photo-label">Photo Coming Soon</div>
+          <div class="trainer-red-bar"></div>
+        </div>
+        <div class="trainer-body">
+          <div class="trainer-name">Preeti Agharkar</div>
+          <div class="trainer-role">Women's Fitness Coach</div>
+          <div class="trainer-tags">
+            <span class="trainer-tag">Cardio</span>
+            <span class="trainer-tag">Wellness</span>
+          </div>
+          <p class="trainer-bio">Expert in women's fitness, PCOD management, and post-natal recovery programs.</p>
+        </div>
+      </div>
+
+      <div class="trainer-card reveal d3">
+        <div class="trainer-photo">
+          <div style="font-size:3.5rem;">🥊</div>
+          <div class="trainer-photo-label">Photo Coming Soon</div>
+          <div class="trainer-red-bar"></div>
+        </div>
+        <div class="trainer-body">
+          <div class="trainer-name">Uddesh Thakur</div>
+          <div class="trainer-role">Functional Trainer</div>
+          <div class="trainer-tags">
+            <span class="trainer-tag">HIIT</span>
+            <span class="trainer-tag">Mobility</span>
+          </div>
+          <p class="trainer-bio">Functional movement specialist focused on injury prevention and athletic performance.</p>
+        </div>
+      </div>
+
+      <div class="trainer-card reveal d4">
+        <div class="trainer-photo">
+          <div style="font-size:3.5rem;">🧘</div>
+          <div class="trainer-photo-label">Photo Coming Soon</div>
+          <div class="trainer-red-bar"></div>
+        </div>
+        <div class="trainer-body">
+          <div class="trainer-name">Sahil Gharat</div>
+          <div class="trainer-role">Nutrition & Fitness</div>
+          <div class="trainer-tags">
+            <span class="trainer-tag">Nutrition</span>
+            <span class="trainer-tag">Fat Loss</span>
+          </div>
+          <p class="trainer-bio">Certified nutritionist and fitness trainer specializing in sustainable fat loss programs.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY CHOOSE US ── -->
+<section class="why-section">
+  <div class="container-rrx">
+    <div class="reveal" style="margin-bottom:3rem;">
+      <div class="section-label">Our Advantage</div>
+      <h2 class="section-title">Why Choose <span>RedRocX</span></h2>
+      <p class="section-sub">More than a gym — a complete wellness ecosystem.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal d1">
+        <div class="why-icon">👩‍🔬</div>
+        <div class="why-title">Expert Certified Trainers</div>
+        <p class="why-desc">All our trainers hold nationally recognized certifications and undergo continuous professional development.</p>
+      </div>
+      <div class="why-card reveal d2">
+        <div class="why-icon">🎯</div>
+        <div class="why-title">Personalized Programs</div>
+        <p class="why-desc">No two bodies are the same. Every member gets a plan tailored to their specific goals, health status, and lifestyle.</p>
+      </div>
+      <div class="why-card reveal d3">
+        <div class="why-icon">🏥</div>
+        <div class="why-title">Medical Wellness Approach</div>
+        <p class="why-desc">Specialized programs for PCOD, thyroid, diabetes, cardiac care — bridging fitness and healthcare.</p>
+      </div>
+      <div class="why-card reveal d1">
+        <div class="why-icon">🌸</div>
+        <div class="why-title">Women-First Environment</div>
+        <p class="why-desc">A safe, comfortable, and empowering space where women can train freely and confidently.</p>
+      </div>
+      <div class="why-card reveal d2">
+        <div class="why-icon">🔬</div>
+        <div class="why-title">Science-Backed Methods</div>
+        <p class="why-desc">Every workout protocol and diet plan is grounded in evidence-based sports science and nutrition research.</p>
+      </div>
+      <div class="why-card reveal d3">
+        <div class="why-icon">🏆</div>
+        <div class="why-title">Proven Track Record</div>
+        <p class="why-desc">500+ transformations, 4.9-star Google rating, and a community that speaks for our results.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section style="padding:80px 0;background:var(--red);text-align:center;">
+  <div class="container-rrx" style="position:relative;z-index:1;">
+    <div class="reveal">
+      <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,5vw,3.2rem);color:white;letter-spacing:0.05em;margin-bottom:0.8rem;">Ready to Join the RedRocX Family?</h2>
+      <p style="font-size:0.9rem;color:rgba(255,255,255,0.8);margin-bottom:2rem;">Your transformation story starts with one decision.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="contact.html" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.8rem 2.2rem;background:white;color:var(--red);font-weight:700;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;border-radius:10px;transition:var(--transition);">Get Started Today →</a>
+        <a href="tel:+919137601243" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.75rem 2rem;background:transparent;color:white;font-weight:700;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;border:2px solid rgba(255,255,255,0.6);border-radius:10px;transition:var(--transition);">📞 +91 91376 01243</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="../js/main.js"></script>
+<style>
+@media(max-width:992px){
+  .mv-grid,.founder-inner,.why-grid{grid-template-columns:1fr!important;}
+  [style*="grid-template-columns:repeat(4,1fr)"]{grid-template-columns:1fr 1fr!important;}
+}
+@media(max-width:576px){
+  [style*="grid-template-columns:repeat(4,1fr)"]{grid-template-columns:1fr!important;}
+}
+</style>
+</body>
+</html>

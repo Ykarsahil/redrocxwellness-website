@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Fitness | RedRocX Fitness Club</title>
+  <meta name="description" content="Workout programs, strength training, cardio, personal training, and gym equipment at RedRocX Fitness Club, Pen, Maharashtra."/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <style>
+    /* ── HERO VIDEO BG STYLE ── */
+    .fitness-hero-strip {
+      background: var(--red);
+      padding: 16px 0;
+      overflow: hidden;
+    }
+    .ticker-fitness {
+      display: flex;
+      gap: 3rem;
+      white-space: nowrap;
+      animation: ticker 18s linear infinite;
+    }
+    .ticker-fitness-item {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.85);
+      flex-shrink: 0;
+    }
+    .ticker-fitness-dot { color: rgba(255,255,255,0.35); }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── WORKOUT PROGRAMS ── */
+    .workout-card {
+      background: var(--white);
+      border: 1px solid var(--mid-grey);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: var(--transition);
+      height: 100%;
+    }
+    .workout-card:hover { box-shadow: var(--shadow-red); border-color: rgba(204,0,0,0.25); transform: translateY(-6px); }
+    .workout-card-top {
+      background: linear-gradient(135deg, var(--red-pale), #ffd5d5);
+      padding: 2.5rem 2rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .workout-card-top::after {
+      content: '';
+      position: absolute;
+      bottom: -20px; right: -20px;
+      width: 100px; height: 100px;
+      background: rgba(204,0,0,0.08);
+      border-radius: 50%;
+    }
+    .workout-icon { font-size: 3rem; position: relative; z-index: 1; }
+    .workout-level {
+      display: inline-block;
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.7rem;
+      border-radius: 50px;
+      margin-top: 0.8rem;
+      position: relative;
+      z-index: 1;
+    }
+    .level-beginner { background: #e8f5e9; color: #2e7d32; }
+    .level-intermediate { background: #fff3e0; color: #e65100; }
+    .level-advanced { background: #fce4ec; color: var(--red); }
+    .level-all { background: var(--red-muted); color: var(--red); }
+    .workout-card-body { padding: 1.8rem 2rem 2rem; }
+    .workout-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.07em;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+    }
+    .workout-desc { font-size: 0.82rem; color: var(--text-light); line-height: 1.8; margin-bottom: 1rem; }
+    .workout-meta {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+    .workout-meta-item { font-size: 0.72rem; color: var(--text-mid); display: flex; align-items: center; gap: 0.3rem; }
+    .workout-meta-item span { color: var(--red); font-weight: 700; }
+    .workout-features { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+    .workout-features li { font-size: 0.78rem; color: var(--text-mid); display: flex; align-items: center; gap: 0.5rem; }
+    .workout-features li::before { content: '✓'; color: var(--red); font-weight: 700; }
+
+    /* ── EQUIPMENT ── */
+    .equip-section { padding: 100px 0; background: var(--white); }
+    .equip-category { margin-bottom: 3rem; }
+    .equip-category-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.08em;
+      color: var(--text-dark);
+      border-left: 4px solid var(--red);
+      padding-left: 1rem;
+      margin-bottom: 1.2rem;
+    }
+    .equip-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .equip-item {
+      background: var(--off-white);
+      border: 1px solid var(--mid-grey);
+      border-radius: var(--radius);
+      padding: 1.2rem;
+      text-align: center;
+      transition: var(--transition);
+      font-size: 0.78rem;
+      color: var(--text-mid);
+    }
+    .equip-item:hover { border-color: rgba(204,0,0,0.3); background: var(--red-pale); color: var(--text-dark); }
+    .equip-item-icon { font-size: 1.8rem; display: block; margin-bottom: 0.4rem; }
+
+    /* ── PERSONAL TRAINING ── */
+    .pt-section { padding: 100px 0; background: var(--off-white); }
+    .pt-benefit {
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-start;
+      padding: 1.5rem;
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid var(--mid-grey);
+      transition: var(--transition);
+      margin-bottom: 1rem;
+    }
+    .pt-benefit:hover { border-color: rgba(204,0,0,0.25); box-shadow: var(--shadow-soft); }
+    .pt-benefit-icon {
+      width: 44px; height: 44px;
+      background: var(--red);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .pt-benefit-title { font-weight: 700; font-size: 0.88rem; color: var(--text-dark); margin-bottom: 0.3rem; }
+    .pt-benefit-desc { font-size: 0.78rem; color: var(--text-light); line-height: 1.7; }
+
+    /* ── GALLERY ── */
+    .gym-gallery { padding: 80px 0; background: var(--off-white); }
+
+    /* ── TRAINING SCHEDULE TABLE ── */
+    .sched-cell { padding: 0.7rem 1rem; font-size: 0.78rem; border: 1px solid var(--mid-grey); }
+    .sched-header { background: var(--red); color: white; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.8rem 1rem; }
+    .sched-time { background: var(--off-white); font-weight: 600; color: var(--text-dark); font-size: 0.78rem; }
+    .sched-class { color: var(--text-mid); font-size: 0.75rem; line-height: 1.4; }
+    .sched-class strong { color: var(--red); display: block; font-size: 0.72rem; }
+    .sched-empty { background: var(--light-grey); }
+
+    @media(max-width:992px){
+      .equip-grid{grid-template-columns:repeat(3,1fr)!important;}
+      [style*="grid-template-columns:repeat(3,1fr)"]{grid-template-columns:1fr 1fr!important;}
+      [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}
+    }
+    @media(max-width:576px){
+      .equip-grid{grid-template-columns:1fr 1fr!important;}
+      [style*="grid-template-columns:repeat(3,1fr)"]{grid-template-columns:1fr!important;}
+    }
+  </style>
+</head>
+<body>
+<script src="../js/layout.js"></script>
+
+<!-- ── PAGE HERO ── -->
+<section class="page-hero">
+  <div class="container-rrx">
+    <div class="page-hero-label">Fitness Programs</div>
+    <h1 class="page-hero-title">Train Hard.<br>Grow <span>Stronger.</span></h1>
+    <p class="page-hero-desc">From beginner workouts to elite strength training — our certified trainers design programs that push your limits and deliver real results.</p>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;">
+      <a href="contact.html" class="btn-rrx">Start Training →</a>
+      <a href="#programs" class="btn-rrx-outline">View Programs</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── ANIMATED TICKER ── -->
+<div class="fitness-hero-strip">
+  <div class="ticker-fitness">
+    <span class="ticker-fitness-item">STRENGTH TRAINING</span><span class="ticker-fitness-dot"> · </span>
+    <span class="ticker-fitness-item">CARDIO</span><span class="ticker-fitness-dot"> · </span>
+    <span class="ticker-fitness-item">HIIT</span><span class="ticker-fitness-dot"> · </span>
+    <span class="ticker-fitness-item">PERSONAL TRAINING</span><span class="ticker-fitness-dot"> · </span>
+    <span class="ticker-fitness-item">FUNCTIONAL FITNESS</span><span class="ticker-fitness-dot"> · </span>
+    <span class="ticker-fitness-item">FAT BURN</span><span class="ticker-fitness-dot"> · </span>
+    <span class="ticker-fitness-item">MUSCLE BUILDING</span><span class="ticker-fitness-dot"> · </span>
+    <span class="ticker-fitness-item">MOBILITY</span><span class="ticker-fitness-dot"> · </span>
+    <span class="ticker-fitness-item">STRENGTH TRAINING</span><span class="ticker-fitness-dot"> · </span>
+    <span class="ticker-fitness-item">CARDIO</span><span class="ticker-fitness-dot"> · </span>
+    <span class="ticker-fitness-item">HIIT</span><span class="ticker-fitness-dot"> · </span>
+    <span class="ticker-fitness-item">PERSONAL TRAINING</span><span class="ticker-fitness-dot"> · </span>
+    <span class="ticker-fitness-item">FUNCTIONAL FITNESS</span><span class="ticker-fitness-dot"> · </span>
+    <span class="ticker-fitness-item">FAT BURN</span><span class="ticker-fitness-dot"> · </span>
+    <span class="ticker-fitness-item">MUSCLE BUILDING</span><span class="ticker-fitness-dot"> · </span>
+    <span class="ticker-fitness-item">MOBILITY</span><span class="ticker-fitness-dot"> · </span>
+  </div>
+</div>
+
+<!-- ── STATS ── -->
+<section style="padding:60px 0;background:var(--white);">
+  <div class="container-rrx">
+    <div class="stats-bar reveal">
+      <div class="stat-item">
+        <div class="stat-number"><span data-count="15" data-suffix="+">15+</span></div>
+        <div class="stat-label">Workout Programs</div>
+      </div>
+      <div class="stats-bar-divider"></div>
+      <div class="stat-item">
+        <div class="stat-number"><span data-count="50" data-suffix="+">50+</span></div>
+        <div class="stat-label">Pieces of Equipment</div>
+      </div>
+      <div class="stats-bar-divider"></div>
+      <div class="stat-item">
+        <div class="stat-number"><span data-count="4" data-suffix="+">4+</span></div>
+        <div class="stat-label">Expert Trainers</div>
+      </div>
+      <div class="stats-bar-divider"></div>
+      <div class="stat-item">
+        <div class="stat-number"><span data-count="5000" data-suffix=" sq.ft">5000 sq.ft</span></div>
+        <div class="stat-label">Training Space</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WORKOUT PROGRAMS ── -->
+<section id="programs" style="padding:100px 0;background:var(--off-white);">
+  <div class="container-rrx">
+    <div class="reveal" style="margin-bottom:3.5rem;">
+      <div class="section-label">Training Programs</div>
+      <h2 class="section-title">Choose Your <span>Workout</span></h2>
+      <p class="section-sub">Scientifically designed programs for every fitness level and goal.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.8rem;">
+
+      <div class="workout-card reveal d1">
+        <div class="workout-card-top">
+          <div class="workout-icon">🏋️</div>
+          <div class="workout-level level-all">All Levels</div>
+        </div>
+        <div class="workout-card-body">
+          <div class="workout-name">Strength Training</div>
+          <p class="workout-desc">Build raw strength and lean muscle mass with progressive overload principles and compound movements.</p>
+          <div class="workout-meta">
+            <div class="workout-meta-item"><span>4-5</span> days/week</div>
+            <div class="workout-meta-item"><span>60-75</span> min</div>
+            <div class="workout-meta-item"><span>12</span> week program</div>
+          </div>
+          <ul class="workout-features">
+            <li>Compound movement focus</li>
+            <li>Progressive overload protocol</li>
+            <li>Free weights + machines</li>
+            <li>Form & technique coaching</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="workout-card reveal d2">
+        <div class="workout-card-top">
+          <div class="workout-icon">🏃</div>
+          <div class="workout-level level-beginner">Beginner Friendly</div>
+        </div>
+        <div class="workout-card-body">
+          <div class="workout-name">Cardio Training</div>
+          <p class="workout-desc">Burn fat, boost endurance, and improve heart health with varied cardio training methods.</p>
+          <div class="workout-meta">
+            <div class="workout-meta-item"><span>3-5</span> days/week</div>
+            <div class="workout-meta-item"><span>30-60</span> min</div>
+            <div class="workout-meta-item"><span>Ongoing</span></div>
+          </div>
+          <ul class="workout-features">
+            <li>Treadmill & cycling zones</li>
+            <li>Stairmaster & rowing</li>
+            <li>Heart rate zone training</li>
+            <li>Fat burning optimization</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="workout-card reveal d3">
+        <div class="workout-card-top">
+          <div class="workout-icon">⚡</div>
+          <div class="workout-level level-intermediate">Intermediate</div>
+        </div>
+        <div class="workout-card-body">
+          <div class="workout-name">HIIT Training</div>
+          <p class="workout-desc">High-Intensity Interval Training for maximum calorie burn in minimum time. Efficient and effective.</p>
+          <div class="workout-meta">
+            <div class="workout-meta-item"><span>3</span> days/week</div>
+            <div class="workout-meta-item"><span>30-45</span> min</div>
+            <div class="workout-meta-item"><span>8</span> week cycles</div>
+          </div>
+          <ul class="workout-features">
+            <li>Work-rest interval design</li>
+            <li>Bodyweight & equipment mix</li>
+            <li>After-burn effect (EPOC)</li>
+            <li>Heart rate monitoring</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="workout-card reveal d1">
+        <div class="workout-card-top">
+          <div class="workout-icon">🤸</div>
+          <div class="workout-level level-beginner">Beginner Friendly</div>
+        </div>
+        <div class="workout-card-body">
+          <div class="workout-name">Functional Fitness</div>
+          <p class="workout-desc">Train movement patterns, not just muscles. Improve mobility, stability, and everyday performance.</p>
+          <div class="workout-meta">
+            <div class="workout-meta-item"><span>3-4</span> days/week</div>
+            <div class="workout-meta-item"><span>45-60</span> min</div>
+            <div class="workout-meta-item"><span>Ongoing</span></div>
+          </div>
+          <ul class="workout-features">
+            <li>Multi-joint movement training</li>
+            <li>Core stability work</li>
+            <li>Balance and coordination</li>
+            <li>Injury prevention focus</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="workout-card reveal d2">
+        <div class="workout-card-top">
+          <div class="workout-icon">🌸</div>
+          <div class="workout-level level-all">Women's Specialty</div>
+        </div>
+        <div class="workout-card-body">
+          <div class="workout-name">Women's Fitness</div>
+          <p class="workout-desc">Specially designed for women — toning, core strength, posture correction, and hormonal health optimization.</p>
+          <div class="workout-meta">
+            <div class="workout-meta-item"><span>4</span> days/week</div>
+            <div class="workout-meta-item"><span>45-60</span> min</div>
+            <div class="workout-meta-item"><span>10</span> week program</div>
+          </div>
+          <ul class="workout-features">
+            <li>Body toning & sculpting</li>
+            <li>Pelvic floor strengthening</li>
+            <li>Post-natal recovery</li>
+            <li>Low-impact options</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="workout-card reveal d3">
+        <div class="workout-card-top">
+          <div class="workout-icon">🦾</div>
+          <div class="workout-level level-advanced">Advanced</div>
+        </div>
+        <div class="workout-card-body">
+          <div class="workout-name">Body Transformation</div>
+          <p class="workout-desc">The complete 12-week transformation package combining strength, cardio, and nutrition for dramatic results.</p>
+          <div class="workout-meta">
+            <div class="workout-meta-item"><span>5-6</span> days/week</div>
+            <div class="workout-meta-item"><span>90</span> min</div>
+            <div class="workout-meta-item"><span>12</span> weeks</div>
+          </div>
+          <ul class="workout-features">
+            <li>Periodized training phases</li>
+            <li>Bi-weekly assessments</li>
+            <li>Nutrition plan included</li>
+            <li>Progress photography</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── PERSONAL TRAINING ── -->
+<section class="pt-section">
+  <div class="container-rrx">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;">
+      <div>
+        <div class="section-label reveal">1-on-1 Coaching</div>
+        <h2 class="section-title reveal">Personal <span>Training</span></h2>
+        <p style="font-size:0.88rem;color:var(--text-mid);line-height:1.9;margin-bottom:2rem;" class="reveal">Experience the fastest way to transform your body — personalized, focused, and results-driven coaching with your dedicated trainer.</p>
+
+        <div class="pt-benefit reveal d1">
+          <div class="pt-benefit-icon">🎯</div>
+          <div>
+            <div class="pt-benefit-title">100% Personalized Workouts</div>
+            <p class="pt-benefit-desc">Every session is designed specifically for your body, goals, and current fitness level — no generic programs.</p>
+          </div>
+        </div>
+        <div class="pt-benefit reveal d2">
+          <div class="pt-benefit-icon">👁️</div>
+          <div>
+            <div class="pt-benefit-title">Real-Time Form Correction</div>
+            <p class="pt-benefit-desc">Your trainer monitors every rep, correcting form to prevent injury and maximize muscle activation.</p>
+          </div>
+        </div>
+        <div class="pt-benefit reveal d3">
+          <div class="pt-benefit-icon">📈</div>
+          <div>
+            <div class="pt-benefit-title">Tracked Progress Every Week</div>
+            <p class="pt-benefit-desc">Body measurements, strength benchmarks, and fitness assessments tracked weekly to show real progress.</p>
+          </div>
+        </div>
+        <div class="pt-benefit reveal d4">
+          <div class="pt-benefit-icon">🏅</div>
+          <div>
+            <div class="pt-benefit-title">Accountability Partner</div>
+            <p class="pt-benefit-desc">Your trainer keeps you motivated, consistent, and on track even on the days you don't feel like showing up.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal-r">
+        <!-- PT Packages -->
+        <div style="background:var(--white);border:1px solid var(--mid-grey);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-soft);">
+          <div style="background:var(--red);padding:1.5rem 2rem;">
+            <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:white;letter-spacing:0.07em;margin-bottom:0.2rem;">Personal Training <span style="opacity:0.8;">Packages</span></h3>
+            <p style="font-size:0.75rem;color:rgba(255,255,255,0.75);">Choose what works for your schedule and goals</p>
+          </div>
+          <div style="padding:2rem;">
+            <div style="display:flex;flex-direction:column;gap:1rem;">
+              <div style="padding:1.2rem;border:1px solid var(--mid-grey);border-radius:var(--radius);display:flex;justify-content:space-between;align-items:center;transition:var(--transition);" onmouseover="this.style.borderColor='rgba(204,0,0,0.3)'" onmouseout="this.style.borderColor='var(--mid-grey)'">
+                <div>
+                  <div style="font-weight:700;font-size:0.88rem;color:var(--text-dark);">Starter — 8 Sessions</div>
+                  <div style="font-size:0.72rem;color:var(--text-light);">2 sessions/week · 1 month</div>
+                </div>
+                <div style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:var(--red);">₹4,999</div>
+              </div>
+              <div style="padding:1.2rem;border:2px solid var(--red);border-radius:var(--radius);display:flex;justify-content:space-between;align-items:center;background:var(--red-muted);position:relative;">
+                <div style="position:absolute;top:-10px;right:1rem;background:var(--red);color:white;font-size:0.58rem;font-weight:700;letter-spacing:0.1em;padding:0.2rem 0.6rem;border-radius:50px;">BEST VALUE</div>
+                <div>
+                  <div style="font-weight:700;font-size:0.88rem;color:var(--text-dark);">Pro — 20 Sessions</div>
+                  <div style="font-size:0.72rem;color:var(--text-light);">5 sessions/week · 1 month</div>
+                </div>
+                <div style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:var(--red);">₹9,999</div>
+              </div>
+              <div style="padding:1.2rem;border:1px solid var(--mid-grey);border-radius:var(--radius);display:flex;justify-content:space-between;align-items:center;transition:var(--transition);" onmouseover="this.style.borderColor='rgba(204,0,0,0.3)'" onmouseout="this.style.borderColor='var(--mid-grey)'">
+                <div>
+                  <div style="font-weight:700;font-size:0.88rem;color:var(--text-dark);">Elite — 48 Sessions</div>
+                  <div style="font-size:0.72rem;color:var(--text-light);">4 sessions/week · 3 months</div>
+                </div>
+                <div style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:var(--red);">₹21,999</div>
+              </div>
+            </div>
+            <a href="contact.html" class="btn-rrx" style="width:100%;justify-content:center;margin-top:1.5rem;">Book a Free Trial Session →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── GYM EQUIPMENT ── -->
+<section class="equip-section">
+  <div class="container-rrx">
+    <div class="reveal" style="margin-bottom:3rem;">
+      <div class="section-label">Our Facility</div>
+      <h2 class="section-title">Premium <span>Equipment</span></h2>
+      <p class="section-sub">State-of-the-art machines and free weights for every training style.</p>
+    </div>
+
+    <div class="equip-category reveal">
+      <div class="equip-category-title">💪 Strength Zone</div>
+      <div class="equip-grid">
+        <div class="equip-item"><span class="equip-item-icon">🏋️</span>Olympic Barbell</div>
+        <div class="equip-item"><span class="equip-item-icon">⚖️</span>Dumbbells (2–50kg)</div>
+        <div class="equip-item"><span class="equip-item-icon">🔩</span>Smith Machine</div>
+        <div class="equip-item"><span class="equip-item-icon">📦</span>Power Rack</div>
+        <div class="equip-item"><span class="equip-item-icon">🦵</span>Leg Press</div>
+        <div class="equip-item"><span class="equip-item-icon">💺</span>Preacher Curl</div>
+        <div class="equip-item"><span class="equip-item-icon">🔄</span>Cable Crossover</div>
+        <div class="equip-item"><span class="equip-item-icon">🪑</span>Seated Row</div>
+      </div>
+    </div>
+
+    <div class="equip-category reveal">
+      <div class="equip-category-title">🏃 Cardio Zone</div>
+      <div class="equip-grid">
+        <div class="equip-item"><span class="equip-item-icon">🏃</span>Treadmills</div>
+        <div class="equip-item"><span class="equip-item-icon">🚴</span>Stationary Bikes</div>
+        <div class="equip-item"><span class="equip-item-icon">🚣</span>Rowing Machine</div>
+        <div class="equip-item"><span class="equip-item-icon">🪜</span>Stairmaster</div>
+        <div class="equip-item"><span class="equip-item-icon">⚡</span>Elliptical Trainer</div>
+        <div class="equip-item"><span class="equip-item-icon">🔀</span>Cross Trainer</div>
+        <div class="equip-item"><span class="equip-item-icon">🚵</span>Spin Bike</div>
+        <div class="equip-item"><span class="equip-item-icon">📡</span>Air Bike</div>
+      </div>
+    </div>
+
+    <div class="equip-category reveal">
+      <div class="equip-category-title">🤸 Functional Zone</div>
+      <div class="equip-grid">
+        <div class="equip-item"><span class="equip-item-icon">⚫</span>Kettlebells</div>
+        <div class="equip-item"><span class="equip-item-icon">🏀</span>Medicine Balls</div>
+        <div class="equip-item"><span class="equip-item-icon">🎽</span>Battle Ropes</div>
+        <div class="equip-item"><span class="equip-item-icon">🧘</span>Yoga / Stretch Area</div>
+        <div class="equip-item"><span class="equip-item-icon">📿</span>Resistance Bands</div>
+        <div class="equip-item"><span class="equip-item-icon">🔷</span>Plyo Boxes</div>
+        <div class="equip-item"><span class="equip-item-icon">🪝</span>TRX Suspension</div>
+        <div class="equip-item"><span class="equip-item-icon">🌀</span>Foam Rollers</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── GALLERY ── -->
+<section class="gym-gallery">
+  <div class="container-rrx">
+    <div class="reveal" style="text-align:center;margin-bottom:2.5rem;">
+      <div class="section-label" style="justify-content:center;">Our Space</div>
+      <h2 class="section-title">The <span>RedRocX</span> Floor</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:200px 200px;gap:1rem;">
+      <div style="grid-row:span 2;border-radius:var(--radius-lg);overflow:hidden;">
+        <img src="https://lh3.googleusercontent.com/p/AF1QipOiKmFNE7IINtTepSTHm0TeGNRIathOsHSOq-6G=s1360-w1360-h1020-rw" alt="Training Floor" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s ease;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"/>
+      </div>
+      <div style="border-radius:var(--radius);overflow:hidden;" class="reveal d1">
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwer_g0iCIjaV9Lh46mJs88pBQpZRcDJlG-BMshbhfj4CIyOqMZsjMRtaNeu_kktauqpsnyKEDHkYSJOxG_hneN1T0fYTBgp_PEnkgqtsdDiw4duN6B5o2hC9LGnymjiFROhgbao4=s1360-w1360-h1020-rw" alt="Equipment" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
+      </div>
+      <div style="border-radius:var(--radius);overflow:hidden;" class="reveal d2">
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAweq7YPXoyV9as2Dzw5kecgeqOAOjahY6_CtoNFjmbq4QbjJiOPlG4Lkfd9aq5wW0oIMsp6IxjPTdSNdvaAxoAJ-KE-F5vlomET0txBxY64mx1PA0C_tpQP_DFI8j9iugQm0n3lU4IA=s1360-w1360-h1020-rw" alt="Workout Area" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
+      </div>
+      <div style="border-radius:var(--radius);overflow:hidden;" class="reveal d3">
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAweojnlOqautpNS3_9XcXFJs_lNBCdWx4Ct6wmEPxrSYcGgZkV7gjwMCr8OlyQqdU5ABPS9gbWf7kuMd-n4HzccYNQ6wKEtAEEKbCWO6rPRf9MZUg2EN29uZstzaJrQ7wVYM39rTm=s1360-w1360-h1020-rw" alt="Premium Facilities" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
+      </div>
+      <div style="border-radius:var(--radius);overflow:hidden;background:var(--red);display:flex;align-items:center;justify-content:center;" class="reveal d4">
+        <div style="text-align:center;padding:1rem;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:white;line-height:1;">5000+</div>
+          <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.8);">sq.ft of Training Space</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section style="padding:80px 0;background:var(--red);text-align:center;">
+  <div class="container-rrx">
+    <div class="reveal">
+      <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,5vw,3.2rem);color:white;letter-spacing:0.05em;margin-bottom:0.8rem;">Ready to Train Like a Champion?</h2>
+      <p style="font-size:0.9rem;color:rgba(255,255,255,0.8);margin-bottom:2rem;">First session is on us. Come feel the RedRocX difference.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="contact.html" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.8rem 2.2rem;background:white;color:var(--red);font-weight:700;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;border-radius:10px;">Book Free Trial →</a>
+        <a href="tel:+919137601243" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.75rem 2rem;background:transparent;color:white;font-weight:700;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;border:2px solid rgba(255,255,255,0.6);border-radius:10px;">📞 Call Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="../js/main.js"></script>
+<style>
+@media(max-width:992px){
+  [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}
+  [style*="grid-template-columns:repeat(3,1fr)"]{grid-template-columns:1fr 1fr!important;}
+  [style*="grid-template-columns:2fr 1fr 1fr"]{grid-template-columns:1fr 1fr!important;grid-template-rows:auto!important;}
+  [style*="grid-row:span 2"]{grid-row:span 1!important;}
+}
+@media(max-width:576px){
+  [style*="grid-template-columns:repeat(3,1fr)"]{grid-template-columns:1fr!important;}
+}
+</style>
+</body>
+</html>
